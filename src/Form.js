@@ -1,13 +1,36 @@
-const Form = ({ fields }) => {
-  const fieldArr = Object.keys(fields).map((keyid) => {
+const Form = ({ fields, data, setData, handleSubmit }) => {
+  const handleChange = (idx, text) => {
+    const tempData = [...data];
+    tempData[idx] = text;
+    setData(tempData);
+  };
+
+  const fieldArr = fields.map((field, idx) => {
     return (
-      <>
-        <label forName={fields[keyid]}>{fields[keyid]} :</label>
-        <input type="text" id={fields[keyid]} name={fields[keyid]} value="" />
-      </>
+      <div key={idx}>
+        <label htmlFor={field["name"]}>{field["name"]}</label>
+        <input
+          type={field["type"]}
+          id={field["name"]}
+          name={field["name"]}
+          value={data[idx]}
+          required
+          onChange={(e) => handleChange(idx, e.target.value)}
+        />
+      </div>
     );
   });
-  return fieldArr;
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+    >
+      {fieldArr}
+      <button>sumbit</button>
+    </form>
+  );
 };
 
 export default Form;
