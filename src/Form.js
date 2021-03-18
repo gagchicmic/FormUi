@@ -31,14 +31,24 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
       if (text.length == 0) {
         field["isvalid"] = true;
       } else {
-        field[
-          "isvalid"
-        ] = /^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text);
+        if (
+          !/^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text)
+        ) {
+          field["isvalid"] = false;
+          field["error"] = "enter valid email";
+        } else {
+          field["isvalid"] = true;
+        }
       }
     } else if (type === "password") {
-      field[
-        "isvalid"
-      ] = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(text);
+      if (
+        !/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(text)
+      ) {
+        field["isvalid"] = false;
+        field["error"] = "password must contain 1 symbol,1 num and 6 length";
+      } else {
+        field["isvalid"] = true;
+      }
     }
     // CONTACT VALIDATION
     else if (type === "contact") {
@@ -80,18 +90,8 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
         {/* to toggle the error depend upon the validation  */}
         {field["isvalid"] === false && (
           <>
-            <hr
-              style={{
-                color: "red",
-                backgroundColor: "red",
-                height: 2,
-                margin: "0",
-                marginTop: "4px",
-                marginLeft: "100px",
-                width: "200px",
-              }}
-            />
-            <span>{field["error"]}</span>
+            <br />
+            <span style={{ color: "red" }}>{field["error"]}</span>
           </>
         )}
       </div>
