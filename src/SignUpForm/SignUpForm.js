@@ -29,6 +29,7 @@ const SignUpForm = ({ getDataFromForm }) => {
         data={data}
         setData={setData}
         fields={signUpFields}
+        isSignUp={true}
       />
       ;
     </>
