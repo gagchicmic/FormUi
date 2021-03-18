@@ -17,8 +17,14 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
       } else {
         field["isvalid"] = true;
       }
-    } else if (type == "last name") {
-      text.length < 6 ? (field["isvalid"] = false) : (field["isvalid"] = true);
+    } else if (type == "last name" || /\d/.test(text)) {
+      if (text.length < 6 || /\d/.test(text)) {
+        field["isvalid"] = false;
+        field["error"] =
+          "length should be greater than 6 and use only alphabets";
+      } else {
+        field["isvalid"] = true;
+      }
     }
     // EMAIL AND PASSWORD VALIDATION
     else if (type === "email") {
@@ -81,6 +87,8 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
                 height: 2,
                 margin: "0",
                 marginTop: "4px",
+                marginLeft: "100px",
+                width: "200px",
               }}
             />
             <span>{field["error"]}</span>

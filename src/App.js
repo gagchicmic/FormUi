@@ -34,7 +34,7 @@ function App() {
     >
       <div
         style={{
-          padding: "12%",
+          padding: "8%",
           display: "grid",
           gridTemplateColumns: "4fr 5fr",
           textAlign: "center",
@@ -48,7 +48,7 @@ function App() {
               " -webkit-linear-gradient(to right, #3CD3AD, #4CB8C4)" /* Chrome 10-25, Safari 5.1-6 */,
             background:
               " linear-gradient(to right, #3CD3AD, #4CB8C4)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
-            height: "60vh",
+            height: "80vh",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -73,12 +73,8 @@ function App() {
               "-webkit-linear-gradient(to right, #E2E2E2, #C9D6FF)" /* Chrome 10-25, Safari 5.1-6 */,
             background:
               "linear-gradient(to right, #E2E2E2, #C9D6FF)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
-            height: "60vh",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
+            height: "80vh",
+
             borderTopRightRadius: "20px",
             borderBottomRightRadius: "20px",
           }}
