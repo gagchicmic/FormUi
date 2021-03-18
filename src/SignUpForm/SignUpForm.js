@@ -7,7 +7,9 @@ const SignUpForm = ({ getDataFromForm }) => {
   let email;
   let password;
   const handleSubmit = () => {
+    // getting the email and password from field
     signUpFields.map((field, idx) => {
+      // updating field from onChange data
       field.value = data[idx];
       if (Object.values(field)[0] === "email") {
         email = field.value;
@@ -16,10 +18,12 @@ const SignUpForm = ({ getDataFromForm }) => {
         password = field.value;
       }
     });
+    // get user data to store in state
     const formData = {
       email: email,
       password: password,
     };
+    // callback function to store data in state for checking authentication
     getDataFromForm(formData);
   };
   return (
