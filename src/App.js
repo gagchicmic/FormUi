@@ -4,6 +4,6 @@ const App = () => {
     { email: { type: "email" } },
     { passwords: { type: "password" } },
   ];
-  return <Form fields={loginFields} />;
+  return <Form field={loginFields} />;
 };
 export default App;
