@@ -12,7 +12,7 @@
 /build
 
 # misc
-.DS_Store
+.DS_Storehttps://github.com/gagchicmic/vipin.git
 .env.local
 .env.development.local
 .env.test.local
