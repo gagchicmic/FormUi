@@ -45,7 +45,6 @@ const LoginForm = ({ validateUser }) => {
         setData={setData}
         fields={loginFields}
       />
-      ;
     </>
   );
 };

@@ -10,7 +10,13 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
   const checkValidation = (type, field, text) => {
     // NAME VALIDATIONS
     if (type === "first name") {
-      text.length < 6 ? (field["isvalid"] = false) : (field["isvalid"] = true);
+      if (text.length < 6 || /\d/.test(text)) {
+        field["isvalid"] = false;
+        field["error"] =
+          "length should be greater than 6 and use only alphabets";
+      } else {
+        field["isvalid"] = true;
+      }
     } else if (type == "last name") {
       text.length < 6 ? (field["isvalid"] = false) : (field["isvalid"] = true);
     }
@@ -30,7 +36,7 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
     }
     // CONTACT VALIDATION
     else if (type === "contact") {
-      field["isvalid"] = /^\+\d{1,3}-\d{9,10}$/.test(text);
+      field["isvalid"] = /^\+(?:[0-9] ?){6,14}[0-9]$/.test(text);
     }
   };
 
@@ -49,22 +55,37 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
   const fieldArr = fields.map((field, idx) => {
     return (
       // wrapper containing label and input as childs
-      <div key={idx}>
+      <div style={{ marginTop: "8px" }} key={idx}>
         {/* getting name and value from fieldData depend upon form type */}
-        <label htmlFor={field["name"]}>{field["name"]}</label>
+        {/* <label htmlFor={field["name"]}>{field["name"]}</label> */}
         <input
+          style={{ outline: "none" }}
           type={field["type"]}
           id={field["name"]}
           name={field["name"]}
           value={data[idx]}
           required
+          placeholder={field["name"]}
           onChange={(e) =>
             // to take care of updating and validating onChange
             handleChange(idx, e.target.value, field["name"], field)
           }
         />
         {/* to toggle the error depend upon the validation  */}
-        {field["isvalid"] === false && <span>wrong</span>}
+        {field["isvalid"] === false && (
+          <>
+            <hr
+              style={{
+                color: "red",
+                backgroundColor: "red",
+                height: 2,
+                margin: "0",
+                marginTop: "4px",
+              }}
+            />
+            <span>{field["error"]}</span>
+          </>
+        )}
       </div>
     );
   });
@@ -72,14 +93,20 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
   // form view
   return (
     <form
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
       onSubmit={(e) => {
         // prevent refresh
         e.preventDefault();
-        handleSubmit();
+        handleSubmit(fields);
       }}
     >
       {fieldArr}
-      <button>submit</button>
+      <button style={{ marginTop: "20px" }}>submit</button>
     </form>
   );
 };

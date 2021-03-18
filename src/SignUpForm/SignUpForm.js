@@ -6,7 +6,9 @@ const SignUpForm = ({ getDataFromForm }) => {
   const [data, setData] = useState(new Array(signUpFields.length).fill(""));
   let email;
   let password;
-  const handleSubmit = () => {
+  const handleSubmit = (fields) => {
+    console.log(fields);
+
     // getting the email and password from field
     signUpFields.map((field, idx) => {
       // updating field from onChange data
@@ -35,7 +37,6 @@ const SignUpForm = ({ getDataFromForm }) => {
         fields={signUpFields}
         isSignUp={true}
       />
-      ;
     </>
   );
 };
