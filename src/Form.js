@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 // generic form component dewpends upon field data
 const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
   // CHECK THE VALIDATION
@@ -78,15 +76,11 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
       const today = new Date();
       const [year1, month1, day1] = text.split("-");
       const [day2, month2, year2] = today.toLocaleDateString().split("/");
-      if (year1 > year2) {
-        result = false;
-      } else if (year1 === year2 && month1 > month2) {
-        result = false;
-      } else if (year1 === year2 && month1 === month2 && day1 > day2) {
+      if (year2 - year1 < 18) {
         result = false;
       }
-      if (result == false) {
-        alert("select valid date");
+      if (result === false) {
+        alert("user must be 18 years old ");
         return;
       }
     }

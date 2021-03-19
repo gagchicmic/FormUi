@@ -2,12 +2,20 @@ import { useState } from "react";
 import { signUpFields } from "../data.js";
 import Form from "../Form";
 import Navbar from "../Navbar.js";
-const SignUpForm = ({ getDataFromForm, userData }) => {
+const SignUpForm = ({ getDataFromForm, userData }, props) => {
   const [data, setData] = useState(new Array(signUpFields.length).fill(""));
+  const uData = userData;
+
   let email;
   let password;
   const handleSubmit = (fields) => {
-    console.log(fields);
+    for (let key in uData) {
+      console.log(key, "   ", fields);
+      if (key === fields["2"]["value"]) {
+        alert("already used email");
+        return;
+      }
+    }
     let isValid = true;
     let message;
     for (let i = 0; i < fields.length; i++) {

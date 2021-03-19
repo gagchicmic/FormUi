@@ -15,6 +15,8 @@ function App() {
 
     if (userData[data["email"]] === data["password"]) {
       alert(true);
+    } else {
+      alert("wrong email or password");
     }
   };
 
