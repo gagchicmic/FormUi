@@ -2,7 +2,7 @@ import { useState } from "react";
 import { signUpFields } from "../data.js";
 import Form from "../Form";
 import Navbar from "../Navbar.js";
-const SignUpForm = ({ getDataFromForm }) => {
+const SignUpForm = ({ getDataFromForm, userData }) => {
   const [data, setData] = useState(new Array(signUpFields.length).fill(""));
   let email;
   let password;
@@ -36,6 +36,7 @@ const SignUpForm = ({ getDataFromForm }) => {
         setData={setData}
         fields={signUpFields}
         isSignUp={true}
+        userData={userData}
       />
     </>
   );

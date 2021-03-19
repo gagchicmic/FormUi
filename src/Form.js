@@ -1,14 +1,12 @@
 import { useState } from "react";
 
 // generic form component dewpends upon field data
-const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
-  const [start, isStart] = useState(0);
-
+const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
   // CHECK THE VALIDATION
   // here field[isvalid] is used to check the validation onChange
   // field[isvalid] == true means input is valid otherwise invalid input type
   const checkValidation = (type, field, text) => {
-    if (type == "first name") {
+    if (type === "first name") {
       if (text.length < 6 || !/^[A-Za-z]+$/.test(text)) {
         field["isvalid"] = false;
         field["error"] =
@@ -16,7 +14,7 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
       } else {
         field["isvalid"] = true;
       }
-    } else if (type == "last name") {
+    } else if (type === "last name") {
       if (text.length < 6 || !/^[A-Za-z]+$/.test(text)) {
         field["isvalid"] = false;
         field["error"] =
@@ -67,15 +65,16 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp }) => {
     if (type === "contact" && !/^[0-9]*$/.test(text)) {
       return;
     }
+    // prevent selecting future dates
     if (type === "DOB") {
       const today = new Date();
       const [year1, month1, day1] = text.split("-");
       const [day2, month2, year2] = today.toLocaleDateString().split("/");
       if (year1 > year2) {
         return;
-      } else if (year1 == year2 && month1 > month2) {
+      } else if (year1 === year2 && month1 > month2) {
         return;
-      } else if (year1 == year2 && month1 == month2 && day1 > day2) {
+      } else if (year1 === year2 && month1 === month2 && day1 > day2) {
         return;
       }
     }

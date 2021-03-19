@@ -80,7 +80,7 @@ function App() {
           }}
         >
           <h1>Sign Up</h1>
-          <SignUpForm getDataFromForm={getDataFromForm} />
+          <SignUpForm userData={userData} getDataFromForm={getDataFromForm} />
         </div>
       </div>
     </div>
