@@ -16,6 +16,7 @@ function App() {
     DOB: { type: "date", error: "", value: "" },
     Contact: { type: "tel", error: "", value: "" },
   });
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
   // validate the user is genuine or not
   const validateUser = (data) => {
     console.log(data["password"]);
@@ -60,7 +61,13 @@ function App() {
               <h1>Sign In</h1>
             </div>
             <div style={{ paddingRight: "9%" }}>
-              <LoginForm className="login" validateUser={validateUser} />
+              <LoginForm
+                formData={formData}
+                setFormData={setFormData}
+                userData={userData}
+                className="login"
+                validateUser={validateUser}
+              />
             </div>
           </div>
         ) : (

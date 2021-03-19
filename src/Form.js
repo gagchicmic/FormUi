@@ -11,63 +11,51 @@ const Form = ({
   // CHECK THE VALIDATION
   // here field[isvalid] is used to check the validation onChange
   // field[isvalid] == true means input is valid otherwise invalid input type
-  const checkValidation = (type, text) => {
-    const field = JSON.parse(JSON.stringify(formData));
+  const checkValidation = (type, text, field) => {
     if (type === "First Name") {
       if (!/^[A-Za-z]+$/.test(text)) {
-        field["isvalid"] = false;
-        field["error"] =
+        field[type]["error"] =
           "length should be greater than 6 and use only alphabets";
       } else {
-        field["isvalid"] = true;
-        field["error"] = "no";
+        field[type]["error"] = "";
       }
-    } else if (type === "last name") {
+    } else if (type === "Last Name") {
       if (!/^[A-Za-z]+$/.test(text)) {
-        field["isvalid"] = false;
-        field["error"] =
+        field[type]["error"] =
           "length should be greater than 6 and use only alphabets";
       } else {
-        field["isvalid"] = true;
-        field["error"] = "no";
+        field[type]["error"] = "";
       }
-    } else if (type === "email") {
+    } else if (type === "Email") {
       if (text.length === 0) {
-        field["isvalid"] = true;
-        field["error"] = "no";
+        field[type]["error"] = "";
       } else {
         if (
           !/^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text)
         ) {
-          field["isvalid"] = false;
-          field["error"] = "Pleasr enter a valid email account ";
+          field[type]["error"] = "Pleasr enter a valid email account ";
         } else {
-          field["isvalid"] = true;
-          field["error"] = "no";
+          field[type]["error"] = "";
         }
       }
-    } else if (type === "password") {
+    } else if (type === "Password") {
       if (
         !/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(text)
       ) {
-        field["isvalid"] = false;
-        field["error"] = "password must contain 1 symbol,1 num and 6 length";
+        field[type]["error"] =
+          "password must contain 1 symbol,1 num and 6 length";
       } else {
-        field["isvalid"] = true;
-        field["error"] = "no";
+        field[type]["error"] = "";
       }
     }
     // CONTACT VALIDATION
-    else if (type === "contact") {
+    else if (type === "Contact") {
       if (text.length === 12 && text[0] + text[1] === "91") {
-        field["isvalid"] = true;
-        field["error"] = "no";
+        field[type]["error"] = "";
       } else if (text.length !== 10) {
-        field["isvalid"] = false;
-        field["error"] = "enter valid mobile no";
+        field[type]["error"] = "enter valid mobile no";
       } else {
-        field["isvalid"] = true;
-        field["error"] = "no";
+        field[type]["error"] = "";
       }
     }
   };
@@ -75,30 +63,32 @@ const Form = ({
   // handle the Onchange event
   const handleChange = (text, type) => {
     text = text.trim();
+
     // update the value onChange
     if (type === "Contact" && !/^[0-9]*$/.test(text)) {
       return;
     }
     // prevent selecting future dates
-    // if (type === "DOB") {
-    //   let result = true;
-    //   const today = new Date();
-    //   const year1 = text.split("-")[0];
-    //   const year2 = today.toLocaleDateString().split("/")[2];
-    //   if (year2 - year1 < 18) {
-    //     result = false;
-    //   }
-    //   if (result === false) {
-    //     alert("user must be 18 years old ");
-    //     return;
-    //   }
-    // }
+    if (type === "DOB") {
+      let result = true;
+      const today = new Date();
+      const year1 = text.split("-")[0];
+      const year2 = today.toLocaleDateString().split("/")[2];
+      if (year2 - year1 < 18) {
+        result = false;
+      }
+      if (result === false) {
+        alert("user must be 18 years old ");
+        return;
+      }
+    }
     const tempData = JSON.parse(JSON.stringify(formData));
-    tempData[type] = text;
-    setFormData(tempData);
+    tempData[type]["value"] = text;
+    console.log(tempData);
 
     // validate onChange of input value
-    isSignUp && checkValidation(type, text);
+    isSignUp && checkValidation(type, text, tempData);
+    setFormData(tempData);
   };
 
   // to show the view of all inputs and labels
@@ -115,28 +105,25 @@ const Form = ({
             textAlign: "right",
           }}
         >
-          <label
-            style={{ textTransform: "capitalize" }}
-            htmlFor={field["name"]}
-          >
-            {field}
+          <label style={{ textTransform: "capitalize" }} htmlFor={field}>
+            {[field]}
           </label>
           <div style={{ textAlign: "left" }}>
             <input
               style={{ marginLeft: "30px ", width: "40%" }}
-              type={field["type"]}
-              id={field["name"]}
-              name={field["name"]}
-              value={formData[field["value"]]}
+              type={formData[field]["type"]}
+              id={field}
+              name={field}
+              value={formData[field]["value"]}
               required
-              placeholder={field["name"]}
-              onChange={(e) =>
+              placeholder={field}
+              onChange={(e) => {
                 // to take care of updating and validating onChange
-                handleChange(e.target.value, field)
-              }
+                handleChange(e.target.value, field);
+              }}
             />
             {/* to toggle the error depend upon the validation  */}
-            {field["isvalid"] === false && (
+            {formData[field]["error"] && (
               <span
                 style={{
                   fontSize: "14px",
@@ -145,7 +132,7 @@ const Form = ({
                   marginLeft: "2%",
                 }}
               >
-                {field["error"]}
+                {formData[field]["error"]}
               </span>
             )}
           </div>

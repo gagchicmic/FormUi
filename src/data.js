@@ -2,6 +2,7 @@ const loginFields = [
   { name: "email", type: "email", value: "" },
   { name: "password", type: "password", value: "" },
 ];
+
 const signUpFields = [
   { name: "first name", type: "text", value: "", isvalid: null, error: "no" },
   { name: "last name", type: "text", value: "", isvalid: null, error: "no" },

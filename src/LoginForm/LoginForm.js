@@ -3,7 +3,7 @@ import { useState } from "react";
 import { loginFields } from "../data.js";
 import Form from "../Form";
 
-const LoginForm = ({ validateUser }) => {
+const LoginForm = ({ validateUser, formData, setFormData, userData }) => {
   // to store the onChange values in arr
   const [data, setData] = useState(new Array(loginFields.length).fill(""));
 
@@ -44,6 +44,8 @@ const LoginForm = ({ validateUser }) => {
         data={data}
         setData={setData}
         fields={loginFields}
+        formData={formData}
+        setFormData={setFormData}
       />
     </>
   );
