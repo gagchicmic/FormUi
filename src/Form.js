@@ -1,6 +1,5 @@
 // generic form component dewpends upon field data
 const Form = ({
-  fields,
   data,
   setData,
   handleSubmit,
@@ -12,8 +11,9 @@ const Form = ({
   // CHECK THE VALIDATION
   // here field[isvalid] is used to check the validation onChange
   // field[isvalid] == true means input is valid otherwise invalid input type
-  const checkValidation = (type, field, text) => {
-    if (type === "first name") {
+  const checkValidation = (type, text) => {
+    const field = JSON.parse(JSON.stringify(formData));
+    if (type === "First Name") {
       if (!/^[A-Za-z]+$/.test(text)) {
         field["isvalid"] = false;
         field["error"] =
@@ -80,25 +80,25 @@ const Form = ({
       return;
     }
     // prevent selecting future dates
-    if (type === "DOB") {
-      let result = true;
-      const today = new Date();
-      const year1 = text.split("-")[0];
-      const year2 = today.toLocaleDateString().split("/")[2];
-      if (year2 - year1 < 18) {
-        result = false;
-      }
-      if (result === false) {
-        alert("user must be 18 years old ");
-        return;
-      }
-    }
-    const tempData = Object.assign({}, formData);
+    // if (type === "DOB") {
+    //   let result = true;
+    //   const today = new Date();
+    //   const year1 = text.split("-")[0];
+    //   const year2 = today.toLocaleDateString().split("/")[2];
+    //   if (year2 - year1 < 18) {
+    //     result = false;
+    //   }
+    //   if (result === false) {
+    //     alert("user must be 18 years old ");
+    //     return;
+    //   }
+    // }
+    const tempData = JSON.parse(JSON.stringify(formData));
     tempData[type] = text;
     setFormData(tempData);
 
     // validate onChange of input value
-    // isSignUp && checkValidation(type, field, text);
+    isSignUp && checkValidation(type, text);
   };
 
   // to show the view of all inputs and labels
@@ -127,7 +127,7 @@ const Form = ({
               type={field["type"]}
               id={field["name"]}
               name={field["name"]}
-              value={formData[field]}
+              value={formData[field["value"]]}
               required
               placeholder={field["name"]}
               onChange={(e) =>
@@ -150,12 +150,6 @@ const Form = ({
             )}
           </div>
         </div>
-
-        {idx === fields.length - 1 && (
-          <div style={{ marginLeft: "4%", marginTop: "1.2%" }}>
-            <button>submit</button>
-          </div>
-        )}
       </div>
     );
   });
@@ -173,7 +167,7 @@ const Form = ({
       onSubmit={(e) => {
         // prevent refresh
         e.preventDefault();
-        handleSubmit(fields);
+        handleSubmit(formData);
       }}
     >
       {fieldArr}

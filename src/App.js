@@ -9,12 +9,12 @@ function App() {
   // store the data of signUp Users
   const [userData, setUserData] = useState({});
   const [formData, setFormData] = useState({
-    "First Name": "",
-    "Last Name": "",
-    Email: "",
-    Password: "",
-    DOB: "",
-    Contact: "",
+    "First Name": { type: "text", error: "", value: "" },
+    "Last Name": { type: "text", error: "", value: "" },
+    Email: { type: "email", error: "", value: "" },
+    Password: { type: "password", error: "", value: "" },
+    DOB: { type: "date", error: "", value: "" },
+    Contact: { type: "tel", error: "", value: "" },
   });
   // validate the user is genuine or not
   const validateUser = (data) => {
