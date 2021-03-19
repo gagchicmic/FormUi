@@ -8,6 +8,14 @@ import SignUpForm from "./SignUpForm/SignUpForm";
 function App() {
   // store the data of signUp Users
   const [userData, setUserData] = useState({});
+  const [formData, setFormData] = useState({
+    "First Name": "",
+    "Last Name": "",
+    Email: "",
+    Password: "",
+    DOB: "",
+    Contact: "",
+  });
   // validate the user is genuine or not
   const validateUser = (data) => {
     console.log(data["password"]);
@@ -58,7 +66,12 @@ function App() {
         ) : (
           <div>
             <h1 style={{ marginTop: "-10%" }}>Sign Up</h1>
-            <SignUpForm userData={userData} getDataFromForm={getDataFromForm} />
+            <SignUpForm
+              formData={formData}
+              setFormData={setFormData}
+              userData={userData}
+              getDataFromForm={getDataFromForm}
+            />
           </div>
         )}
       </div>

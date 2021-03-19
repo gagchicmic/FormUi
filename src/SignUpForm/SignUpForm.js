@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { signUpFields } from "../data.js";
 import Form from "../Form";
-const SignUpForm = ({ getDataFromForm, userData }, props) => {
+const SignUpForm = (
+  { getDataFromForm, userData, formData, setFormData },
+  props
+) => {
   const [data, setData] = useState(new Array(signUpFields.length).fill(""));
   const uData = userData;
 
@@ -53,11 +56,13 @@ const SignUpForm = ({ getDataFromForm, userData }, props) => {
     <>
       <Form
         handleSubmit={handleSubmit}
+        setFormData={setFormData}
         data={data}
         setData={setData}
         fields={signUpFields}
         isSignUp={true}
         userData={userData}
+        formData={formData}
       />
     </>
   );

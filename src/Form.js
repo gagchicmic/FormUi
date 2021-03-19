@@ -1,5 +1,14 @@
 // generic form component dewpends upon field data
-const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
+const Form = ({
+  fields,
+  data,
+  setData,
+  handleSubmit,
+  isSignUp,
+  userData,
+  setFormData,
+  formData,
+}) => {
   // CHECK THE VALIDATION
   // here field[isvalid] is used to check the validation onChange
   // field[isvalid] == true means input is valid otherwise invalid input type
@@ -64,10 +73,10 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
   };
 
   // handle the Onchange event
-  const handleChange = (idx, text, type, field) => {
+  const handleChange = (text, type) => {
     text = text.trim();
     // update the value onChange
-    if (type === "contact" && !/^[0-9]*$/.test(text)) {
+    if (type === "Contact" && !/^[0-9]*$/.test(text)) {
       return;
     }
     // prevent selecting future dates
@@ -84,16 +93,16 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
         return;
       }
     }
-    const tempData = [...data];
-    tempData[idx] = text;
-    setData(tempData);
+    const tempData = Object.assign({}, formData);
+    tempData[type] = text;
+    setFormData(tempData);
 
     // validate onChange of input value
-    isSignUp && checkValidation(type, field, text);
+    // isSignUp && checkValidation(type, field, text);
   };
 
   // to show the view of all inputs and labels
-  const fieldArr = fields.map((field, idx) => {
+  const fieldArr = Object.keys(formData).map((field, idx) => {
     return (
       // wrapper containing label and input as childs
       <div style={{ flexBasis: "100%", marginTop: "20px" }} key={idx}>
@@ -110,7 +119,7 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
             style={{ textTransform: "capitalize" }}
             htmlFor={field["name"]}
           >
-            {field["name"]}
+            {field}
           </label>
           <div style={{ textAlign: "left" }}>
             <input
@@ -118,12 +127,12 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
               type={field["type"]}
               id={field["name"]}
               name={field["name"]}
-              value={data[idx]}
+              value={formData[field]}
               required
               placeholder={field["name"]}
               onChange={(e) =>
                 // to take care of updating and validating onChange
-                handleChange(idx, e.target.value, field["name"], field)
+                handleChange(e.target.value, field)
               }
             />
             {/* to toggle the error depend upon the validation  */}
