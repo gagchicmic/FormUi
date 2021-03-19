@@ -112,36 +112,36 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
           >
             {field["name"]}
           </label>
-          <input
-            style={{ marginLeft: "30px ", width: "40%" }}
-            type={field["type"]}
-            id={field["name"]}
-            name={field["name"]}
-            value={data[idx]}
-            required
-            placeholder={field["name"]}
-            onChange={(e) =>
-              // to take care of updating and validating onChange
-              handleChange(idx, e.target.value, field["name"], field)
-            }
-          />
-        </div>
-        {/* to toggle the error depend upon the validation  */}
-        {field["isvalid"] === false && (
-          <div
-            style={{
-              flexBasis: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <div style={{ marginLeft: "10%" }}>
-              <span style={{ fontSize: "14px", color: "red", marginTop: "2%" }}>
+          <div style={{ textAlign: "left" }}>
+            <input
+              style={{ marginLeft: "30px ", width: "40%" }}
+              type={field["type"]}
+              id={field["name"]}
+              name={field["name"]}
+              value={data[idx]}
+              required
+              placeholder={field["name"]}
+              onChange={(e) =>
+                // to take care of updating and validating onChange
+                handleChange(idx, e.target.value, field["name"], field)
+              }
+            />
+            {/* to toggle the error depend upon the validation  */}
+            {field["isvalid"] === false && (
+              <span
+                style={{
+                  fontSize: "14px",
+                  color: "red",
+                  marginTop: "2%",
+                  marginLeft: "2%",
+                }}
+              >
                 {field["error"]}
               </span>
-            </div>
+            )}
           </div>
-        )}
+        </div>
+
         {idx === fields.length - 1 && (
           <div style={{ marginLeft: "4%", marginTop: "1.2%" }}>
             <button>submit</button>
