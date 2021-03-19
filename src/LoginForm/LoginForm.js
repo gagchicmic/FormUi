@@ -14,7 +14,7 @@ const LoginForm = ({ validateUser }) => {
   // when user try to login
   const handleSubmit = () => {
     // iterate over object data of input fields
-    loginFields.map((field, idx) => {
+    loginFields.forEach((field, idx) => {
       // update the value of field from current value of event
       field.value = data[idx];
 

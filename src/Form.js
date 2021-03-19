@@ -23,7 +23,7 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
         field["error"] = "no";
       }
     } else if (type === "email") {
-      if (text.length == 0) {
+      if (text.length === 0) {
         field["isvalid"] = true;
         field["error"] = "no";
       } else {
@@ -74,8 +74,8 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
     if (type === "DOB") {
       let result = true;
       const today = new Date();
-      const [year1, month1, day1] = text.split("-");
-      const [day2, month2, year2] = today.toLocaleDateString().split("/");
+      const year1 = text.split("-")[0];
+      const year2 = today.toLocaleDateString().split("/")[2];
       if (year2 - year1 < 18) {
         result = false;
       }

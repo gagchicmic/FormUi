@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { signUpFields } from "../data.js";
 import Form from "../Form";
-import Navbar from "../Navbar.js";
 const SignUpForm = ({ getDataFromForm, userData }, props) => {
   const [data, setData] = useState(new Array(signUpFields.length).fill(""));
   const uData = userData;
@@ -31,7 +30,7 @@ const SignUpForm = ({ getDataFromForm, userData }, props) => {
     }
 
     // getting the email and password from field
-    signUpFields.map((field, idx) => {
+    signUpFields.forEach((field, idx) => {
       // updating field from onChange data
       field.value = data[idx];
       if (Object.values(field)[0] === "email") {
