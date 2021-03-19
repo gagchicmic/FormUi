@@ -13,6 +13,7 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
           "length should be greater than 6 and use only alphabets";
       } else {
         field["isvalid"] = true;
+        field["error"] = "no";
       }
     } else if (type === "last name") {
       if (!/^[A-Za-z]+$/.test(text)) {
@@ -21,18 +22,21 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
           "length should be greater than 6 and use only alphabets";
       } else {
         field["isvalid"] = true;
+        field["error"] = "no";
       }
     } else if (type === "email") {
       if (text.length == 0) {
         field["isvalid"] = true;
+        field["error"] = "no";
       } else {
         if (
           !/^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text)
         ) {
           field["isvalid"] = false;
-          field["error"] = "enter valid email";
+          field["error"] = "Pleasr enter a valid email account ";
         } else {
           field["isvalid"] = true;
+          field["error"] = "no";
         }
       }
     } else if (type === "password") {
@@ -43,17 +47,20 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
         field["error"] = "password must contain 1 symbol,1 num and 6 length";
       } else {
         field["isvalid"] = true;
+        field["error"] = "no";
       }
     }
     // CONTACT VALIDATION
     else if (type === "contact") {
       if (text.length === 12 && text[0] + text[1] === "91") {
         field["isvalid"] = true;
+        field["error"] = "no";
       } else if (text.length !== 10) {
         field["isvalid"] = false;
         field["error"] = "enter valid mobile no";
       } else {
         field["isvalid"] = true;
+        field["error"] = "no";
       }
     }
   };
@@ -125,7 +132,6 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
             }
           />
         </div>
-
         {/* to toggle the error depend upon the validation  */}
         {field["isvalid"] === false && (
           <div
@@ -140,6 +146,11 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
                 {field["error"]}
               </span>
             </div>
+          </div>
+        )}
+        {idx === fields.length - 1 && (
+          <div style={{ marginLeft: "4%", marginTop: "1.2%" }}>
+            <button>submit</button>
           </div>
         )}
       </div>
@@ -163,9 +174,6 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
       }}
     >
       {fieldArr}
-      <div>
-        <button style={{ marginTop: "20%", width: "150%" }}>submit</button>
-      </div>
     </form>
   );
 };

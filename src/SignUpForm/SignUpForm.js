@@ -8,6 +8,19 @@ const SignUpForm = ({ getDataFromForm, userData }) => {
   let password;
   const handleSubmit = (fields) => {
     console.log(fields);
+    let isValid = true;
+    let message;
+    for (let i = 0; i < fields.length; i++) {
+      if (fields[i]["error"] !== "no") {
+        isValid = false;
+        message = fields[i]["error"];
+        break;
+      }
+    }
+    if (!isValid) {
+      alert(message);
+      return;
+    }
 
     // getting the email and password from field
     signUpFields.map((field, idx) => {
@@ -27,6 +40,7 @@ const SignUpForm = ({ getDataFromForm, userData }) => {
     };
     // callback function to store data in state for checking authentication
     getDataFromForm(formData);
+    alert("succes submitted");
   };
   return (
     <>
