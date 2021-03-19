@@ -3,8 +3,36 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <>
-      <Link to="/login">Login</Link>
-      <Link to="/signup">SignUp</Link>
+      <div
+        style={{
+          alignItems: "center",
+          height: "6vh",
+          backgroundColor: "#FFAFBD",
+          display: "flex",
+          flexDirection: "row-reverse",
+        }}
+      >
+        <Link
+          style={{
+            marginRight: "40px",
+            color: "#4a4e69",
+            textDecoration: "none",
+          }}
+          to="/login"
+        >
+          Login
+        </Link>
+        <Link
+          style={{
+            marginRight: "40px",
+            color: "#4a4e69",
+            textDecoration: "none",
+          }}
+          to="/signup"
+        >
+          SignUp
+        </Link>
+      </div>
     </>
   );
 }

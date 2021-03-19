@@ -7,7 +7,7 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
   // field[isvalid] == true means input is valid otherwise invalid input type
   const checkValidation = (type, field, text) => {
     if (type === "first name") {
-      if (text.length < 6 || !/^[A-Za-z]+$/.test(text)) {
+      if (!/^[A-Za-z]+$/.test(text)) {
         field["isvalid"] = false;
         field["error"] =
           "length should be greater than 6 and use only alphabets";
@@ -15,7 +15,7 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
         field["isvalid"] = true;
       }
     } else if (type === "last name") {
-      if (text.length < 6 || !/^[A-Za-z]+$/.test(text)) {
+      if (!/^[A-Za-z]+$/.test(text)) {
         field["isvalid"] = false;
         field["error"] =
           "length should be greater than 6 and use only alphabets";
@@ -47,10 +47,9 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
     }
     // CONTACT VALIDATION
     else if (type === "contact") {
-      if (text[0] !== "+") {
-        text = "+" + text;
-      }
-      if (!/^[+]91(9|8|7)\d{9}$/.test(text)) {
+      if (text.length === 12 && text[0] + text[1] === "91") {
+        field["isvalid"] = true;
+      } else if (text.length !== 10) {
         field["isvalid"] = false;
         field["error"] = "enter valid mobile no";
       } else {
@@ -61,20 +60,26 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
 
   // handle the Onchange event
   const handleChange = (idx, text, type, field) => {
+    text = text.trim();
     // update the value onChange
     if (type === "contact" && !/^[0-9]*$/.test(text)) {
       return;
     }
     // prevent selecting future dates
     if (type === "DOB") {
+      let result = true;
       const today = new Date();
       const [year1, month1, day1] = text.split("-");
       const [day2, month2, year2] = today.toLocaleDateString().split("/");
       if (year1 > year2) {
-        return;
+        result = false;
       } else if (year1 === year2 && month1 > month2) {
-        return;
+        result = false;
       } else if (year1 === year2 && month1 === month2 && day1 > day2) {
+        result = false;
+      }
+      if (result == false) {
+        alert("select valid date");
         return;
       }
     }
@@ -90,28 +95,52 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
   const fieldArr = fields.map((field, idx) => {
     return (
       // wrapper containing label and input as childs
-      <div style={{ marginTop: "8px" }} key={idx}>
+      <div style={{ flexBasis: "100%", marginTop: "20px" }} key={idx}>
         {/* getting name and value from fieldData depend upon form type */}
-        {/* <label htmlFor={field["name"]}>{field["name"]}</label> */}
-        <input
-          style={{}}
-          type={field["type"]}
-          id={field["name"]}
-          name={field["name"]}
-          value={data[idx]}
-          required
-          placeholder={field["name"]}
-          onChange={(e) =>
-            // to take care of updating and validating onChange
-            handleChange(idx, e.target.value, field["name"], field)
-          }
-        />
+        <div
+          style={{
+            flexBasis: "100%",
+            display: "grid",
+            gridTemplateColumns: "2fr 3fr",
+            textAlign: "right",
+          }}
+        >
+          <label
+            style={{ textTransform: "capitalize" }}
+            htmlFor={field["name"]}
+          >
+            {field["name"]}
+          </label>
+          <input
+            style={{ marginLeft: "30px ", width: "40%" }}
+            type={field["type"]}
+            id={field["name"]}
+            name={field["name"]}
+            value={data[idx]}
+            required
+            placeholder={field["name"]}
+            onChange={(e) =>
+              // to take care of updating and validating onChange
+              handleChange(idx, e.target.value, field["name"], field)
+            }
+          />
+        </div>
+
         {/* to toggle the error depend upon the validation  */}
         {field["isvalid"] === false && (
-          <>
-            <br />
-            <span style={{ color: "red" }}>{field["error"]}</span>
-          </>
+          <div
+            style={{
+              flexBasis: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <div style={{ marginLeft: "10%" }}>
+              <span style={{ fontSize: "14px", color: "red", marginTop: "2%" }}>
+                {field["error"]}
+              </span>
+            </div>
+          </div>
         )}
       </div>
     );
@@ -122,9 +151,10 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
     <form
       style={{
         display: "flex",
-        justifyContent: "space-between",
-        flexDirection: "column",
-        alignItems: "center",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        // paddingRight: "18%",
       }}
       onSubmit={(e) => {
         // prevent refresh
@@ -133,7 +163,9 @@ const Form = ({ fields, data, setData, handleSubmit, isSignUp, userData }) => {
       }}
     >
       {fieldArr}
-      <button style={{ marginTop: "20px" }}>submit</button>
+      <div>
+        <button style={{ marginTop: "20%", width: "150%" }}>submit</button>
+      </div>
     </form>
   );
 };
