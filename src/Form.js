@@ -1,32 +1,24 @@
 // generic form component dewpends upon field data
-const Form = ({
-  data,
-  setData,
-  handleSubmit,
-  isSignUp,
-  userData,
-  setFormData,
-  formData,
-}) => {
+const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   // CHECK THE VALIDATION
   // here field[isvalid] is used to check the validation onChange
   // field[isvalid] == true means input is valid otherwise invalid input type
   const checkValidation = (type, text, field) => {
     if (type === "First Name") {
+      if (!/^[A-Za-z]+$/.test(text) && text.length > 0) {
+        field[type]["error"] =
+          "length should be greater than 6 and use only alphabets";
+      } else {
+        field[type]["error"] = "";
+      }
+    } else if (type === "Last Name" && text.length > 0) {
       if (!/^[A-Za-z]+$/.test(text)) {
         field[type]["error"] =
           "length should be greater than 6 and use only alphabets";
       } else {
         field[type]["error"] = "";
       }
-    } else if (type === "Last Name") {
-      if (!/^[A-Za-z]+$/.test(text)) {
-        field[type]["error"] =
-          "length should be greater than 6 and use only alphabets";
-      } else {
-        field[type]["error"] = "";
-      }
-    } else if (type === "Email") {
+    } else if (type === "Email" && text.length > 0) {
       if (text.length === 0) {
         field[type]["error"] = "";
       } else {
@@ -38,7 +30,7 @@ const Form = ({
           field[type]["error"] = "";
         }
       }
-    } else if (type === "Password") {
+    } else if (type === "Password" && text.length > 0) {
       if (
         !/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(text)
       ) {
@@ -49,7 +41,7 @@ const Form = ({
       }
     }
     // CONTACT VALIDATION
-    else if (type === "Contact") {
+    else if (type === "Contact" && text.length > 0) {
       if (text.length === 12 && text[0] + text[1] === "91") {
         field[type]["error"] = "";
       } else if (text.length !== 10) {
@@ -158,6 +150,7 @@ const Form = ({
       }}
     >
       {fieldArr}
+      <button>Submit</button>
     </form>
   );
 };

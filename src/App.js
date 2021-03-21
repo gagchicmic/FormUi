@@ -16,7 +16,10 @@ function App() {
     DOB: { type: "date", error: "", value: "" },
     Contact: { type: "tel", error: "", value: "" },
   });
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [loginData, setLoginData] = useState({
+    Email: { type: "email", error: "", value: "" },
+    Password: { type: "password", error: "", value: "" },
+  });
   // validate the user is genuine or not
   const validateUser = (data) => {
     console.log(data["password"]);
@@ -32,6 +35,7 @@ function App() {
   // Data from SignUp form to store in state
   const getDataFromForm = (data) => {
     const tempObj = { ...userData };
+    console.log(tempObj);
     tempObj[data["email"]] = data["password"];
     setUserData(tempObj);
   };
@@ -62,8 +66,8 @@ function App() {
             </div>
             <div style={{ paddingRight: "9%" }}>
               <LoginForm
-                formData={formData}
-                setFormData={setFormData}
+                formData={loginData}
+                setFormData={setLoginData}
                 userData={userData}
                 className="login"
                 validateUser={validateUser}

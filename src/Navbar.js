@@ -30,7 +30,7 @@ function Navbar() {
           }}
           to="/signup"
         >
-          SignUp
+          Signup
         </Link>
       </div>
     </>
