@@ -26,7 +26,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
         field[type]["error"] = "";
       } else {
         if (
-          !/^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text)
+          !/^\w+([.-]?\w+)+@\w+([.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text)
         ) {
           field[type]["error"] = "Pleasr enter a valid email account ";
         } else {
@@ -77,7 +77,6 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
     }
     const tempData = JSON.parse(JSON.stringify(formData));
     tempData[type]["value"] = text;
-    console.log(tempData);
 
     // validate onChange of input value
     isSignUp && checkValidation(type, text, tempData, isSignUp);

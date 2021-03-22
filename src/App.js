@@ -25,9 +25,9 @@ function App() {
   const validateUser = (data) => {
     // console.log(data, "    ", userData);
     // // console.log(userData[data["email"]]);
-
+    console.log(userData);
     if (userData[data["Email"]["value"]] === data["Password"]["value"]) {
-      alert(true);
+      history.replace("/welcome", { params: userData["userName"] });
     } else {
       alert("wrong email or password");
     }
@@ -36,19 +36,17 @@ function App() {
   // Data from SignUp form to store in state
   const getDataFromForm = (data) => {
     const tempObj = { ...userData };
-    console.log(tempObj);
     tempObj[data["email"]] = data["password"];
+    tempObj["userName"] = formData["First Name"]["value"];
     setUserData(tempObj);
-    history.replace("/welcome", { params: formData["First Name"]["value"] });
-    console.log("cehckkk");
-    // setFormData({
-    //   "First Name": { type: "text", error: "", value: "" },
-    //   "Last Name": { type: "text", error: "", value: "" },
-    //   Email: { type: "email", error: "", value: "" },
-    //   Password: { type: "password", error: "", value: "" },
-    //   DOB: { type: "date", error: "", value: "" },
-    //   Contact: { type: "tel", error: "", value: "" },
-    // });
+    setFormData({
+      "First Name": { type: "text", error: "", value: "" },
+      "Last Name": { type: "text", error: "", value: "" },
+      Email: { type: "email", error: "", value: "" },
+      Password: { type: "password", error: "", value: "" },
+      DOB: { type: "date", error: "", value: "" },
+      Contact: { type: "tel", error: "", value: "" },
+    });
   };
   //   Signup or Login View depend upon the url
   return (

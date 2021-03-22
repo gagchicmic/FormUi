@@ -24,12 +24,15 @@ const SignUpForm = (
     if (!isValid) {
       alert(message);
       return;
+    } else {
+      alert("SuccesFully Account Created");
     }
     const {
       Password: { value: password },
       Email: { value: email },
     } = formData;
     const dataObj = { password, email };
+
     getDataFromForm(dataObj);
   };
   return (

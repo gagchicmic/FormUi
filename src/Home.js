@@ -1,5 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
-import { loginFields, signUpFields } from "./data.js";
+import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar.js";
 
 const Home = () => {
