@@ -26,7 +26,7 @@ function App() {
     // console.log(data, "    ", userData);
     // // console.log(userData[data["email"]]);
     var x = localStorage.getItem("userDataStore");
-    console.log();
+    console.log(x);
     if (userData[data["Email"]["value"]] === data["Password"]["value"]) {
       history.replace("/welcome", { params: userData["userName"] });
     } else {
@@ -37,7 +37,9 @@ function App() {
   // Data from SignUp form to store in state
   const getDataFromForm = (data) => {
     const tempObj = { ...userData };
-    tempObj[data["email"]] = data["password"];
+    tempObj[["email"]] = data["email"];
+    tempObj[["password"]] = data["password"];
+
     tempObj["userName"] = formData["First Name"]["value"];
     setUserData(tempObj);
     setFormData({
@@ -48,7 +50,8 @@ function App() {
       DOB: { type: "date", error: "", value: "" },
       Contact: { type: "tel", error: "", value: "" },
     });
-    localStorage.setItem("userDataStore", tempObj);
+
+    localStorage.setItem("userObj", JSON.stringify(tempObj));
   };
   //   Signup or Login View depend upon the url
   return (

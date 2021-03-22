@@ -17,6 +17,7 @@ function Navbar({ isLoggedIn }) {
             style={{
               marginRight: "40px",
               color: "#fcd5ce",
+              fontWeight: "solid",
               textDecoration: "none",
             }}
             to="/"
@@ -39,6 +40,7 @@ function Navbar({ isLoggedIn }) {
             style={{
               marginRight: "40px",
               color: "#fcd5ce",
+              fontWeight: "solid",
               textDecoration: "none",
             }}
             to="/login"
@@ -49,6 +51,7 @@ function Navbar({ isLoggedIn }) {
             style={{
               marginRight: "40px",
               color: "#fcd5ce",
+              fontWeight: "solid",
               textDecoration: "none",
             }}
             to="/signup"
