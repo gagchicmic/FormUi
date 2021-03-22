@@ -25,7 +25,8 @@ function App() {
   const validateUser = (data) => {
     // console.log(data, "    ", userData);
     // // console.log(userData[data["email"]]);
-    console.log(userData);
+    var x = localStorage.getItem("userDataStore");
+    console.log();
     if (userData[data["Email"]["value"]] === data["Password"]["value"]) {
       history.replace("/welcome", { params: userData["userName"] });
     } else {
@@ -47,53 +48,116 @@ function App() {
       DOB: { type: "date", error: "", value: "" },
       Contact: { type: "tel", error: "", value: "" },
     });
+    localStorage.setItem("userDataStore", tempObj);
   };
   //   Signup or Login View depend upon the url
   return (
     <>
       <Navbar />
-
       <div
         style={{
+          background: " #2C3E50" /* fallback for old browsers */,
           background:
-            "linear-gradient(to right, #2C5364, #203A43, #0F2027)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
+            " -webkit-linear-gradient(to top, #FD746C, #2C3E50)" /* Chrome 10-25, Safari 5.1-6 */,
+          background:
+            " linear-gradient(to top, #FD746C, #2C3E50)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
+
           height: "100vh",
+          margin: "0 auto",
           display: "flex",
-          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          textAlign: "center",
-          color: "#e0fbfc",
         }}
       >
-        {window.location.href === "http://localhost:3000/login" ? (
-          <div style={{ marginTop: "-200px" }}>
-            <div style={{}}>
-              <h1>Welcome Back</h1>
-              <h5>To keep connect please login with us </h5>
-              <h1>Sign In</h1>
+        <div
+          style={{
+            background: "rgba(0,0,0,0.2)",
+            backdropFilter: "saturate(80%) blur(30px)",
+            borderRadius: "20px",
+            width: "70%",
+            height: "75%",
+            boxShadow: "box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;",
+          }}
+        >
+          {window.location.href === "http://localhost:3000/login" ? (
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                height: "40vh",
+              }}
+            >
+              <h1
+                style={{
+                  flexBasis: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "flex-end",
+                  margin: "0",
+                  color: "#e56b6f",
+                  fontWeight: "bolder",
+                }}
+              >
+                Sign In
+              </h1>
+              <div
+                style={{
+                  flexBasis: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "0",
+                  alignItems: "center",
+                }}
+              >
+                <LoginForm
+                  formData={loginData}
+                  setFormData={setLoginData}
+                  userData={userData}
+                  className="login"
+                  validateUser={validateUser}
+                />
+              </div>
             </div>
-            <div style={{ paddingRight: "9%" }}>
-              <LoginForm
-                formData={loginData}
-                setFormData={setLoginData}
-                userData={userData}
-                className="login"
-                validateUser={validateUser}
-              />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                height: "60vh",
+              }}
+            >
+              <h1
+                style={{
+                  flexBasis: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "0",
+                  alignItems: "flex-end",
+                  color: "#e56b6f",
+                  fontWeight: "bolder",
+                }}
+              >
+                Sign Up
+              </h1>
+              <div
+                style={{
+                  flexBasis: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "0",
+                  alignItems: "center",
+                }}
+              >
+                <SignUpForm
+                  formData={formData}
+                  setFormData={setFormData}
+                  userData={userData}
+                  getDataFromForm={getDataFromForm}
+                />
+              </div>
             </div>
-          </div>
-        ) : (
-          <div>
-            <h1 style={{ marginTop: "-10%" }}>Sign Up</h1>
-            <SignUpForm
-              formData={formData}
-              setFormData={setFormData}
-              userData={userData}
-              getDataFromForm={getDataFromForm}
-            />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   );

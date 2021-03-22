@@ -8,7 +8,7 @@ function Navbar({ isLoggedIn }) {
           style={{
             alignItems: "center",
             height: "6vh",
-            backgroundColor: "#FFAFBD",
+            backgroundColor: "rgb(229, 107, 111)",
             display: "flex",
             flexDirection: "row-reverse",
           }}
@@ -16,7 +16,7 @@ function Navbar({ isLoggedIn }) {
           <Link
             style={{
               marginRight: "40px",
-              color: "#4a4e69",
+              color: "#fcd5ce",
               textDecoration: "none",
             }}
             to="/"
@@ -29,7 +29,8 @@ function Navbar({ isLoggedIn }) {
           style={{
             alignItems: "center",
             height: "6vh",
-            backgroundColor: "#FFAFBD",
+            backgroundColor: "rgb(229, 107, 111)",
+            backdropFilter: "blur(10px)",
             display: "flex",
             flexDirection: "row-reverse",
           }}
@@ -37,7 +38,7 @@ function Navbar({ isLoggedIn }) {
           <Link
             style={{
               marginRight: "40px",
-              color: "#4a4e69",
+              color: "#fcd5ce",
               textDecoration: "none",
             }}
             to="/login"
@@ -47,7 +48,7 @@ function Navbar({ isLoggedIn }) {
           <Link
             style={{
               marginRight: "40px",
-              color: "#4a4e69",
+              color: "#fcd5ce",
               textDecoration: "none",
             }}
             to="/signup"

@@ -33,7 +33,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
         if (
           !/^\w+([.-]?\w+)+@\w+([.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text)
         ) {
-          field[type]["error"] = "Pleasr enter a valid email account ";
+          field[type]["error"] = "Please enter a valid email account ";
         } else {
           field[type]["error"] = "";
         }
@@ -98,65 +98,80 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
       <>
         <div
           style={{
-            marginTop: "20px",
-            display: "grid",
-            gridTemplateColumns: "1fr",
+            flexBasis: "100%",
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "20px",
           }}
           key={idx}
         >
           {/* getting name and value from fieldData depend upon form type */}
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 2fr 4fr ",
+              flexBasis: "60%",
+              display: "flex",
+              justifyContent: "flex-end",
             }}
           >
             <label
-              style={{ textTransform: "capitalize", textAlign: "left" }}
+              style={{
+                textTransform: "capitalize",
+                width: "8vw",
+                color: "#e56b6f",
+              }}
               htmlFor={field}
             >
               {[field]}
             </label>
-            <div>
-              <input
-                autoComplete="off"
-                style={{ marginLeft: "10px ", outline: "none" }}
-                type={formData[field]["type"]}
-                id={field}
-                name={field}
-                value={formData[field]["value"]}
-                required
-                placeholder={field}
-                onChange={(e) => {
-                  // to take care of updating and validating onChange
-                  handleChange(e.target.value, field);
-                }}
-              />
-            </div>
-            {formData[field]["error"] && (
-              <div>
-                <span
-                  style={{
-                    fontSize: "12px",
-                    color: "red",
-                    marginTop: "2%",
-                    marginLeft: "2%",
-                  }}
-                >
-                  {formData[field]["error"]}
-                </span>
-              </div>
-            )}
-
-            {/* to toggle the error depend upon the validation  */}
+            <input
+              autoComplete="off"
+              style={{
+                minHeight: "27px",
+                border: "2px solid #dadada",
+                borderRadius: "6px",
+                paddingLeft: "7px",
+              }}
+              type={formData[field]["type"]}
+              id={field}
+              name={field}
+              value={formData[field]["value"]}
+              required
+              placeholder={field}
+              onChange={(e) => {
+                // to take care of updating and validating onChange
+                handleChange(e.target.value, field);
+              }}
+            />
           </div>
+
+          {formData[field]["error"] ? (
+            <div
+              style={{
+                paddingLeft: "1%",
+                flexBasis: "40%",
+                fontSize: "12px",
+                color: "rgb(252, 213, 206)",
+              }}
+            >
+              <span>{formData[field]["error"]}</span>
+            </div>
+          ) : (
+            <div style={{ flexBasis: "40%" }}>
+              <span></span>
+            </div>
+          )}
+
+          {/* to toggle the error depend upon the validation  */}
         </div>
         {idx === Object.keys(formData).length - 1 && (
-          <div style={{ width: "55%" }}>
+          <div style={{}}>
             <button
               style={{
-                marginTop: "13px",
-                textAlign: "center",
+                backgroundColor: "#e56b6f",
+                padding: "14%",
+                borderRadius: "8px",
+                color: "white",
+                border: "none",
               }}
             >
               submit
@@ -171,10 +186,12 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   return (
     <form
       style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
+        marginTop: "20px",
+        display: "flex",
+        flexWrap: "wrap",
         justifyContent: "center",
-        marginLeft: "310px",
+        flexBasis: "100%",
+        fontWeight: "bold",
       }}
       onSubmit={(e) => {
         // prevent refresh
