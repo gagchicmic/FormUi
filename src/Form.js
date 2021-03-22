@@ -5,7 +5,12 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   // field[isvalid] == true means input is valid otherwise invalid input type
   const checkValidation = (type, text, field) => {
     if (type === "First Name") {
-      if ((!/^[A-Za-z]+$/.test(text) && text.length > 0) || text.length <= 2) {
+      if (text.length === 0) {
+        field[type]["error"] = "";
+      } else if (
+        (!/^[A-Za-z]+$/.test(text) && text.length > 0) ||
+        text.length <= 2
+      ) {
         field[type]["error"] =
           "length should be greater than 2 and use only alphabets";
       } else {
@@ -42,9 +47,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
     }
     // CONTACT VALIDATION
     else if (type === "Contact" && text.length > 0) {
-      if (text.length === 12 && text[0] + text[1] === "91") {
-        field[type]["error"] = "";
-      } else if (text.length !== 10) {
+      if (!/^[6-9]\d{9}$/.test(text)) {
         field[type]["error"] = "enter valid mobile no";
       } else {
         field[type]["error"] = "";
@@ -87,22 +90,30 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   const fieldArr = Object.keys(formData).map((field, idx) => {
     return (
       // wrapper containing label and input as childs
-      <div style={{ flexBasis: "100%", marginTop: "20px" }} key={idx}>
+      <div
+        style={{
+          marginTop: "20px",
+          display: "grid",
+          gridTemplateColumns: "1fr",
+        }}
+        key={idx}
+      >
         {/* getting name and value from fieldData depend upon form type */}
         <div
           style={{
-            flexBasis: "100%",
             display: "grid",
-            gridTemplateColumns: "2fr 3fr",
-            textAlign: "right",
+            gridTemplateColumns: "1fr 2fr ",
           }}
         >
-          <label style={{ textTransform: "capitalize" }} htmlFor={field}>
+          <label
+            style={{ textTransform: "capitalize", textAlign: "left" }}
+            htmlFor={field}
+          >
             {[field]}
           </label>
-          <div style={{ textAlign: "left" }}>
+          <div>
             <input
-              style={{ marginLeft: "30px ", width: "40%" }}
+              style={{ marginLeft: "10px ", width: "100%" }}
               type={formData[field]["type"]}
               id={field}
               name={field}
@@ -114,20 +125,23 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
                 handleChange(e.target.value, field);
               }}
             />
-            {/* to toggle the error depend upon the validation  */}
             {formData[field]["error"] && (
-              <span
-                style={{
-                  fontSize: "12px",
-                  color: "red",
-                  marginTop: "2%",
-                  marginLeft: "2%",
-                }}
-              >
-                {formData[field]["error"]}
-              </span>
+              <div>
+                <span
+                  style={{
+                    fontSize: "12px",
+                    color: "red",
+                    marginTop: "2%",
+                    marginLeft: "2%",
+                  }}
+                >
+                  {formData[field]["error"]}
+                </span>
+              </div>
             )}
           </div>
+
+          {/* to toggle the error depend upon the validation  */}
         </div>
       </div>
     );
@@ -137,11 +151,8 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   return (
     <form
       style={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        // paddingRight: "18%",
+        display: "grid",
+        gridTemplateColumns: "1fr",
       }}
       onSubmit={(e) => {
         // prevent refresh
