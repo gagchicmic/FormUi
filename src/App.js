@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import LoginForm from "./LoginForm/LoginForm";
 import Navbar from "./Navbar";
 import SignUpForm from "./SignUpForm/SignUpForm";
-
+import { useHistory } from "react-router-dom";
 // logic part
 function App() {
   // store the data of signUp Users
+  const history = useHistory();
   const [userData, setUserData] = useState({});
   const [formData, setFormData] = useState({
     "First Name": { type: "text", error: "", value: "" },
@@ -38,15 +39,16 @@ function App() {
     console.log(tempObj);
     tempObj[data["email"]] = data["password"];
     setUserData(tempObj);
-    alert("Succesfully created");
-    setFormData({
-      "First Name": { type: "text", error: "", value: "" },
-      "Last Name": { type: "text", error: "", value: "" },
-      Email: { type: "email", error: "", value: "" },
-      Password: { type: "password", error: "", value: "" },
-      DOB: { type: "date", error: "", value: "" },
-      Contact: { type: "tel", error: "", value: "" },
-    });
+    history.replace("/welcome", { params: formData["First Name"]["value"] });
+    console.log("cehckkk");
+    // setFormData({
+    //   "First Name": { type: "text", error: "", value: "" },
+    //   "Last Name": { type: "text", error: "", value: "" },
+    //   Email: { type: "email", error: "", value: "" },
+    //   Password: { type: "password", error: "", value: "" },
+    //   DOB: { type: "date", error: "", value: "" },
+    //   Contact: { type: "tel", error: "", value: "" },
+    // });
   };
   //   Signup or Login View depend upon the url
   return (

@@ -1,38 +1,61 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function Navbar() {
+function Navbar({ isLoggedIn }) {
   return (
     <>
-      <div
-        style={{
-          alignItems: "center",
-          height: "6vh",
-          backgroundColor: "#FFAFBD",
-          display: "flex",
-          flexDirection: "row-reverse",
-        }}
-      >
-        <Link
+      {isLoggedIn ? (
+        <div
           style={{
-            marginRight: "40px",
-            color: "#4a4e69",
-            textDecoration: "none",
+            alignItems: "center",
+            height: "6vh",
+            backgroundColor: "#FFAFBD",
+            display: "flex",
+            flexDirection: "row-reverse",
           }}
-          to="/login"
         >
-          Login
-        </Link>
-        <Link
+          <Link
+            style={{
+              marginRight: "40px",
+              color: "#4a4e69",
+              textDecoration: "none",
+            }}
+            to="/"
+          >
+            Sign Out
+          </Link>
+        </div>
+      ) : (
+        <div
           style={{
-            marginRight: "40px",
-            color: "#4a4e69",
-            textDecoration: "none",
+            alignItems: "center",
+            height: "6vh",
+            backgroundColor: "#FFAFBD",
+            display: "flex",
+            flexDirection: "row-reverse",
           }}
-          to="/signup"
         >
-          Signup
-        </Link>
-      </div>
+          <Link
+            style={{
+              marginRight: "40px",
+              color: "#4a4e69",
+              textDecoration: "none",
+            }}
+            to="/login"
+          >
+            Login
+          </Link>
+          <Link
+            style={{
+              marginRight: "40px",
+              color: "#4a4e69",
+              textDecoration: "none",
+            }}
+            to="/signup"
+          >
+            Signup
+          </Link>
+        </div>
+      )}
     </>
   );
 }

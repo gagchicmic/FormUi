@@ -1,8 +1,6 @@
 // generic form component dewpends upon field data
+
 const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
-  // CHECK THE VALIDATION
-  // here field[isvalid] is used to check the validation onChange
-  // field[isvalid] == true means input is valid otherwise invalid input type
   const checkValidation = (type, text, field) => {
     if (type === "First Name") {
       if (text.length === 0) {
@@ -89,42 +87,43 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   // to show the view of all inputs and labels
   const fieldArr = Object.keys(formData).map((field, idx) => {
     return (
-      // wrapper containing label and input as childs
-      <div
-        style={{
-          marginTop: "20px",
-          display: "grid",
-          gridTemplateColumns: "1fr",
-        }}
-        key={idx}
-      >
-        {/* getting name and value from fieldData depend upon form type */}
+      <>
         <div
           style={{
+            marginTop: "20px",
             display: "grid",
-            gridTemplateColumns: "1fr 2fr ",
+            gridTemplateColumns: "1fr",
           }}
+          key={idx}
         >
-          <label
-            style={{ textTransform: "capitalize", textAlign: "left" }}
-            htmlFor={field}
+          {/* getting name and value from fieldData depend upon form type */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 2fr 4fr ",
+            }}
           >
-            {[field]}
-          </label>
-          <div>
-            <input
-              style={{ marginLeft: "10px ", width: "100%" }}
-              type={formData[field]["type"]}
-              id={field}
-              name={field}
-              value={formData[field]["value"]}
-              required
-              placeholder={field}
-              onChange={(e) => {
-                // to take care of updating and validating onChange
-                handleChange(e.target.value, field);
-              }}
-            />
+            <label
+              style={{ textTransform: "capitalize", textAlign: "left" }}
+              htmlFor={field}
+            >
+              {[field]}
+            </label>
+            <div>
+              <input
+                style={{ marginLeft: "10px " }}
+                type={formData[field]["type"]}
+                id={field}
+                name={field}
+                value={formData[field]["value"]}
+                required
+                placeholder={field}
+                onChange={(e) => {
+                  // to take care of updating and validating onChange
+                  handleChange(e.target.value, field);
+                }}
+              />
+            </div>
             {formData[field]["error"] && (
               <div>
                 <span
@@ -139,11 +138,23 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
                 </span>
               </div>
             )}
-          </div>
 
-          {/* to toggle the error depend upon the validation  */}
+            {/* to toggle the error depend upon the validation  */}
+          </div>
         </div>
-      </div>
+        {idx === Object.keys(formData).length - 1 && (
+          <div style={{ width: "55%" }}>
+            <button
+              style={{
+                marginTop: "13px",
+                textAlign: "center",
+              }}
+            >
+              submit
+            </button>
+          </div>
+        )}
+      </>
     );
   });
 
@@ -153,6 +164,8 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
       style={{
         display: "grid",
         gridTemplateColumns: "1fr",
+        justifyContent: "center",
+        marginLeft: "310px",
       }}
       onSubmit={(e) => {
         // prevent refresh
@@ -161,7 +174,6 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
       }}
     >
       {fieldArr}
-      <button style={{ marginLeft: "70px", marginTop: "14px" }}>Submit</button>
     </form>
   );
 };
