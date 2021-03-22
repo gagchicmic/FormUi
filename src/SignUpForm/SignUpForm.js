@@ -5,13 +5,19 @@ const SignUpForm = (
   props
 ) => {
   const handleSubmit = () => {
+    if (userData[formData["Email"]["value"]]) {
+      alert("already exist");
+      return;
+    }
     let isValid = true;
     let message;
     const keyArr = Object.keys(formData);
     for (let i = 0; i < keyArr.length; i++) {
       if (formData[keyArr[i]]["error"].length > 0) {
         isValid = false;
-        message = formData[keyArr[i]]["error"];
+        message = `${(keyArr[i] + " " + "error").toUpperCase()}   : ${
+          formData[keyArr[i]]["error"]
+        }`;
         break;
       }
     }

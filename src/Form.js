@@ -5,16 +5,16 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   // field[isvalid] == true means input is valid otherwise invalid input type
   const checkValidation = (type, text, field) => {
     if (type === "First Name") {
-      if (!/^[A-Za-z]+$/.test(text) && text.length > 0) {
+      if ((!/^[A-Za-z]+$/.test(text) && text.length > 0) || text.length <= 2) {
         field[type]["error"] =
-          "length should be greater than 6 and use only alphabets";
+          "length should be greater than 2 and use only alphabets";
       } else {
         field[type]["error"] = "";
       }
-    } else if (type === "Last Name" && text.length > 0) {
-      if (!/^[A-Za-z]+$/.test(text)) {
+    } else if (type === "Last Name") {
+      if ((!/^[A-Za-z]+$/.test(text) && text.length > 0) || text.length <= 2) {
         field[type]["error"] =
-          "length should be greater than 6 and use only alphabets";
+          "length should be greater than 2 and use only alphabets";
       } else {
         field[type]["error"] = "";
       }
@@ -79,7 +79,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
     console.log(tempData);
 
     // validate onChange of input value
-    isSignUp && checkValidation(type, text, tempData);
+    isSignUp && checkValidation(type, text, tempData, isSignUp);
     setFormData(tempData);
   };
 
@@ -118,7 +118,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
             {formData[field]["error"] && (
               <span
                 style={{
-                  fontSize: "14px",
+                  fontSize: "12px",
                   color: "red",
                   marginTop: "2%",
                   marginLeft: "2%",
@@ -150,7 +150,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
       }}
     >
       {fieldArr}
-      <button>Submit</button>
+      <button style={{ marginLeft: "70px", marginTop: "14px" }}>Submit</button>
     </form>
   );
 };

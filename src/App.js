@@ -22,10 +22,10 @@ function App() {
   });
   // validate the user is genuine or not
   const validateUser = (data) => {
-    console.log(data["password"]);
-    console.log(userData[data["email"]]);
+    // console.log(data, "    ", userData);
+    // // console.log(userData[data["email"]]);
 
-    if (userData[data["email"]] === data["password"]) {
+    if (userData[data["Email"]["value"]] === data["Password"]["value"]) {
       alert(true);
     } else {
       alert("wrong email or password");
@@ -38,6 +38,15 @@ function App() {
     console.log(tempObj);
     tempObj[data["email"]] = data["password"];
     setUserData(tempObj);
+    alert("Succesfully created");
+    setFormData({
+      "First Name": { type: "text", error: "", value: "" },
+      "Last Name": { type: "text", error: "", value: "" },
+      Email: { type: "email", error: "", value: "" },
+      Password: { type: "password", error: "", value: "" },
+      DOB: { type: "date", error: "", value: "" },
+      Contact: { type: "tel", error: "", value: "" },
+    });
   };
   //   Signup or Login View depend upon the url
   return (
