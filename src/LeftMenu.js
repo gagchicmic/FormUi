@@ -1,7 +1,8 @@
 import React from "react";
+import UserList from "./UserList";
 import Usernavbar from "./Usernavbar";
 
-function LeftMenu() {
+function LeftMenu(props) {
   return (
     <div
       style={{
@@ -10,8 +11,10 @@ function LeftMenu() {
         gridTemplateRows: "1fr 10fr",
       }}
     >
-      <Usernavbar />
-      <div style={{ backgroundColor: "#fff" }}></div>
+      <Usernavbar {...props} />
+      <div style={{ backgroundColor: "#fff" }}>
+        {props.friendList.length ? <UserList {...props} /> : null}
+      </div>
     </div>
   );
 }

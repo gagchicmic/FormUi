@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import AvatarList from "./AvatarList";
 
-function Avatars() {
+function Avatars(props) {
+  const handleForm = (event) => {
+    event.preventDefault();
+  };
   return (
     <>
-      <AvatarList />
+      <AvatarList {...props} handleForm={handleForm} />
     </>
   );
 }

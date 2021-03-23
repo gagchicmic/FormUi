@@ -2,7 +2,7 @@ import React from "react";
 import Avatars from "./Avatars";
 import Avatar from "./img_avatar.png";
 
-function Usernavbar() {
+function Usernavbar(props) {
   return (
     <>
       <div
@@ -34,7 +34,7 @@ function Usernavbar() {
             alignItems: "center",
           }}
         >
-          <Avatars />
+          <Avatars {...props} />
         </div>
       </div>
     </>

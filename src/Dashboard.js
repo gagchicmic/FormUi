@@ -1,7 +1,7 @@
 import React from "react";
 import LeftMenu from "./LeftMenu.js";
 import RightMenu from "./RightMenu.js";
-function Dashboard() {
+function Dashboard(props) {
   return (
     <div
       style={{
@@ -10,8 +10,8 @@ function Dashboard() {
         minHeight: "100vh",
       }}
     >
-      <LeftMenu />
-      <RightMenu />
+      <LeftMenu {...props} />
+      <RightMenu {...props} />
 
       {/* <h1>Welcome {userData["currentUser"]["First Name"]["value"]} </h1> */}
     </div>

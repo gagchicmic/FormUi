@@ -168,10 +168,11 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
             <button
               style={{
                 backgroundColor: "#e56b6f",
-                padding: "14%",
+                padding: "19%",
                 borderRadius: "8px",
                 color: "white",
                 border: "none",
+                fontWeight: "bolder",
               }}
             >
               submit
