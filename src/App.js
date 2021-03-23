@@ -25,6 +25,7 @@ function App() {
   // validate the user is genuine or not
   const validateUser = (data) => {
     console.log(data);
+    let isValid = false;
     var x = localStorage.getItem("userArr");
     let userArr = JSON.parse(x);
     for (let i = 0; i < userArr.length; i++) {
@@ -33,10 +34,12 @@ function App() {
         history.replace("/welcome", {
           params: { currentUser: userArr[i] },
         });
+        isValid = true;
         return;
-      } else {
-        alert("wrong email or password");
       }
+    }
+    if (!isValid) {
+      alert("wrong email or password");
     }
   };
 

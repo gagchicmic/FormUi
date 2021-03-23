@@ -7,7 +7,7 @@ function LeftMenu() {
       style={{
         background: "#fff",
         display: "grid",
-        gridTemplateRows: "1fr 11fr",
+        gridTemplateRows: "1fr 10fr",
       }}
     >
       <Usernavbar />

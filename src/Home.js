@@ -11,6 +11,7 @@ const Home = () => {
   ) : (
     <>
       {/* <Navbar isLoggedIn={true} /> */}
+      <h1>{userData["currentUser"]["First Name"]["value"]}</h1>
       <Dashboard />
     </>
   );
