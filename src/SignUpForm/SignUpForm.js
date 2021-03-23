@@ -5,10 +5,15 @@ const SignUpForm = (
   props
 ) => {
   const handleSubmit = () => {
-    if (userData[formData["Email"]["value"]]) {
-      alert("already exist");
-      return;
+    let userData = localStorage.getItem("userArr");
+    userData = JSON.parse(userData);
+    for (let i = 0; i < userData.length; i++) {
+      if (userData[i][formData["Email"]["value"]]) {
+        alert("already exist");
+        return;
+      }
     }
+
     let isValid = true;
     let message;
     const keyArr = Object.keys(formData);

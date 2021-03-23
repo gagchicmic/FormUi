@@ -1,23 +1,17 @@
 import { useLocation } from "react-router-dom";
+import Dashboard from "./Dashboard.js";
 import Navbar from "./Navbar.js";
 
 const Home = () => {
   const location = useLocation();
-  const name = location.state.params;
-  return (
+  const userData = location.state?.params || false;
+  console.log(userData);
+  return !userData ? (
+    <h1> "Error page"</h1>
+  ) : (
     <>
-      <Navbar isLoggedIn={true} />
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-          paddingBottom: "200px",
-        }}
-      >
-        <h1>Welcome {name}</h1>
-      </div>
+      {/* <Navbar isLoggedIn={true} /> */}
+      <Dashboard />
     </>
   );
 };

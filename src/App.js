@@ -4,11 +4,12 @@ import LoginForm from "./LoginForm/LoginForm";
 import Navbar from "./Navbar";
 import SignUpForm from "./SignUpForm/SignUpForm";
 import { useHistory } from "react-router-dom";
+// localStorage.setItem("userArr", JSON.stringify([]));
 // logic part
 function App() {
   // store the data of signUp Users
+
   const history = useHistory();
-  const [userData, setUserData] = useState({});
   const [formData, setFormData] = useState({
     "First Name": { type: "text", error: "", value: "" },
     "Last Name": { type: "text", error: "", value: "" },
@@ -23,25 +24,30 @@ function App() {
   });
   // validate the user is genuine or not
   const validateUser = (data) => {
-    // console.log(data, "    ", userData);
-    // // console.log(userData[data["email"]]);
-    var x = localStorage.getItem("userDataStore");
-    console.log(x);
-    if (userData[data["Email"]["value"]] === data["Password"]["value"]) {
-      history.replace("/welcome", { params: userData["userName"] });
-    } else {
-      alert("wrong email or password");
+    console.log(data);
+    var x = localStorage.getItem("userArr");
+    let userArr = JSON.parse(x);
+    for (let i = 0; i < userArr.length; i++) {
+      if (userArr[i][data["Email"]["value"]] === data["Password"]["value"]) {
+        console.log(userArr[i]);
+        history.replace("/welcome", {
+          params: { currentUser: userArr[i] },
+        });
+        return;
+      } else {
+        alert("wrong email or password");
+      }
     }
   };
 
   // Data from SignUp form to store in state
   const getDataFromForm = (data) => {
-    const tempObj = { ...userData };
-    tempObj[["email"]] = data["email"];
-    tempObj[["password"]] = data["password"];
+    let tempObj = { ...formData };
+    tempObj[data["email"]] = data["password"];
 
-    tempObj["userName"] = formData["First Name"]["value"];
-    setUserData(tempObj);
+    let tempArr = localStorage.getItem("userArr") || "[]";
+    tempArr = JSON.parse(tempArr);
+    tempArr.push(tempObj);
     setFormData({
       "First Name": { type: "text", error: "", value: "" },
       "Last Name": { type: "text", error: "", value: "" },
@@ -51,7 +57,10 @@ function App() {
       Contact: { type: "tel", error: "", value: "" },
     });
 
-    localStorage.setItem("userObj", JSON.stringify(tempObj));
+    localStorage.setItem("userArr", JSON.stringify(tempArr));
+    var x = localStorage.getItem("userArr");
+    let ARR = JSON.parse(x);
+    console.log(ARR);
   };
   //   Signup or Login View depend upon the url
   return (
@@ -115,7 +124,6 @@ function App() {
                 <LoginForm
                   formData={loginData}
                   setFormData={setLoginData}
-                  userData={userData}
                   className="login"
                   validateUser={validateUser}
                 />
@@ -154,7 +162,6 @@ function App() {
                 <SignUpForm
                   formData={formData}
                   setFormData={setFormData}
-                  userData={userData}
                   getDataFromForm={getDataFromForm}
                 />
               </div>
