@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Dashboard from "./Dashboard.js";
-import Navbar from "./Navbar.js";
 import { useHistory } from "react-router-dom";
 
 const Home = () => {

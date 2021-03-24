@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./modal.css";
-import AvatarImg from "./img_avatar.png";
 import { v4 as uuidv4 } from "uuid";
 import Modal from "./Modal";
 function UserList(props) {

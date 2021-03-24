@@ -5,10 +5,7 @@ import "./modal.css";
 import Modal from "./Modal";
 function AvatarList({ userContact, setUserContact, dialog, handleSubmit }) {
   const [modal, setModal] = useState(false);
-  const handleReader = (e) => {
-    let binary = e.target.result;
-    setUserContact({ ...userContact, image: btoa(binary) });
-  };
+
   const handleChange = (event, text) => {
     let textValue;
     if (text === "image") {

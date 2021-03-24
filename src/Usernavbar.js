@@ -2,7 +2,6 @@ import React from "react";
 import Avatars from "./Avatars";
 import Avatar from "./img_avatar.png";
 import { Link } from "react-router-dom";
-import { AiOutlineCloseCircle as Close } from "react-icons/ai";
 
 function Usernavbar(props) {
   return (
