@@ -30,7 +30,7 @@
 }
 .modal button {
   background-color: #e56b6f;
-  padding: 3.4%;
+  padding: 1.8%;
   border-radius: 8px;
   color: white;
   border: none;
@@ -46,12 +46,14 @@
 }
 .modal input[type="text"] {
   padding-left: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .modal .cancel {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 4px;
   margin-right: 10px;
   padding: 0;
   background-color: white;

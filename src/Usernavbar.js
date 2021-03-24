@@ -1,6 +1,8 @@
 import React from "react";
 import Avatars from "./Avatars";
 import Avatar from "./img_avatar.png";
+import { Link } from "react-router-dom";
+import { AiOutlineCloseCircle as Close } from "react-icons/ai";
 
 function Usernavbar(props) {
   return (
@@ -25,6 +27,15 @@ function Usernavbar(props) {
             style={{ maxWidth: "40px", borderRadius: "50%" }}
             src={Avatar}
           />
+          <span
+            style={{
+              display: "inline-block",
+              marginLeft: "10px",
+              fontWeight: "bold",
+            }}
+          >
+            {props.userData["currentUser"]["First Name"]["value"]}
+          </span>
         </div>
         <div
           style={{
@@ -34,6 +45,10 @@ function Usernavbar(props) {
             alignItems: "center",
           }}
         >
+          <Link style={{}} to="/">
+            <Close />
+          </Link>
+
           <Avatars {...props} />
         </div>
       </div>

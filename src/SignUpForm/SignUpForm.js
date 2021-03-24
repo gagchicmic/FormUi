@@ -7,10 +7,12 @@ const SignUpForm = (
   const handleSubmit = () => {
     let userData = localStorage.getItem("userArr");
     userData = JSON.parse(userData);
-    for (let i = 0; i < userData.length; i++) {
-      if (userData[i][formData["Email"]["value"]]) {
-        alert("already exist");
-        return;
+    if (userData && userData.length) {
+      for (let i = 0; i < userData.length; i++) {
+        if (userData[i][formData["Email"]["value"]]) {
+          alert("already exist");
+          return;
+        }
       }
     }
 

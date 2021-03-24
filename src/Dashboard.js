@@ -6,7 +6,7 @@ function Dashboard(props) {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "2fr 5fr",
+        gridTemplateColumns: "2.12fr 5fr",
         minHeight: "100vh",
       }}
     >

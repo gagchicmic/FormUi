@@ -13,7 +13,7 @@ function LeftMenu(props) {
     >
       <Usernavbar {...props} />
       <div style={{ backgroundColor: "#fff" }}>
-        {props.friendList.length ? <UserList {...props} /> : null}
+        <UserList {...props} />
       </div>
     </div>
   );
