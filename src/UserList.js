@@ -93,19 +93,41 @@ function UserList(props) {
       {isPopUp && (
         <Modal>
           <div className="modal">
-            <span
+            <span className="cancel" onClick={() => setPopUp(false)}>
+              Close
+            </span>
+            <div
+              style={{
+                backgroundColor: "snow",
+                padding: "4%",
+                borderRadius: "20px",
+                position: "relative",
+              }}
+            >
+              <div style={{ height: "200px", textAlign: "center" }}>
+                <h4>
+                  {props.localData[idx]["friendsList"][imageIndex]["name"]}
+                </h4>
+                <img
+                  style={{
+                    height: "100%",
+                    objectFit: "contain",
+                    borderRadius: "20px",
+                    marginTop: "10px",
+                  }}
+                  src={props.localData[idx]["friendsList"][imageIndex]["image"]}
+                  alt=""
+                  srcset=""
+                />
+              </div>
+            </div>
+            {/* <span
               style={{ background: "black", fontSize: "30px" }}
               className="cancel"
               onClick={() => setPopUp(false)}
             >
               close
-            </span>
-            <img
-              style={{ height: "400px", width: "400px" }}
-              src={props.localData[idx]["friendsList"][imageIndex]["image"]}
-              alt=""
-              srcset=""
-            />
+            </span> */}
           </div>
         </Modal>
       )}
