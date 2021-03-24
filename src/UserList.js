@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import "./modal.css";
 import AvatarImg from "./img_avatar.png";
 import { v4 as uuidv4 } from "uuid";
+import Modal from "./Modal";
 function UserList(props) {
-  console.log(props.localData);
+  const [isPopUp, setPopUp] = useState(false);
+  const [imageIndex, setImageIndex] = useState(null);
+  let idx;
+  const handleClick = (index) => {
+    setPopUp(true);
+    setImageIndex(index);
+  };
+
   let imageList = [];
 
   const fillData = (index) => {
+    idx = index;
     if (props.localData && "friendsList" in props.localData[index]) {
       imageList = props.localData[index]["friendsList"].map((friend, idx) => {
         return (
@@ -27,6 +37,7 @@ function UserList(props) {
                   borderRadius: "50%",
                 }}
                 src={friend["image"]}
+                onClick={() => handleClick(idx)}
                 alt=""
               />
             </div>
@@ -71,9 +82,38 @@ function UserList(props) {
   }
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 4fr" }}>
-      {imageList}
-    </div>
+    <>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 4fr",
+        }}
+      >
+        {imageList}
+      </div>
+      {isPopUp && (
+        <Modal>
+          <div className="modal">
+            <span
+              style={{ background: "black", fontSize: "30px" }}
+              className="cancel"
+              onClick={() => setPopUp(false)}
+            >
+              close
+            </span>
+            <img
+              style={{ height: "400px", width: "400px" }}
+              src={
+                "data:image/png;base64," +
+                props.localData[idx]["friendsList"][imageIndex]["image"]
+              }
+              alt=""
+              srcset=""
+            />
+          </div>
+        </Modal>
+      )}
+    </>
   );
 }
 export default UserList;

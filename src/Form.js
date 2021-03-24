@@ -174,6 +174,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
                 border: "none",
                 fontWeight: "bolder",
                 marginRight: "20px",
+                textTransform: "capitalize",
               }}
             >
               submit

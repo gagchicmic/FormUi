@@ -8,11 +8,11 @@ function LeftMenu(props) {
       style={{
         background: "#fff",
         display: "grid",
-        gridTemplateRows: "1fr 10fr",
+        gridTemplateRows: "1fr 14fr",
       }}
     >
       <Usernavbar {...props} />
-      <div style={{ backgroundColor: "#fff" }}>
+      <div style={{ backgroundColor: "#fff", overflowY: "auto" }}>
         <UserList {...props} />
       </div>
     </div>

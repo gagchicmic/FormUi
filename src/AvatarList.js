@@ -5,13 +5,20 @@ import "./modal.css";
 import Modal from "./Modal";
 function AvatarList({ userContact, setUserContact, dialog, handleSubmit }) {
   const [modal, setModal] = useState(false);
+  const handleReader = (e) => {
+    let binary = e.target.result;
+    setUserContact({ ...userContact, image: btoa(binary) });
+  };
   const handleChange = (event, text) => {
-    let image;
     let textValue;
     if (text === "image") {
       if (event.target.files && event.target.files[0]) {
-        image = URL.createObjectURL(event.target.files[0]);
-        setUserContact({ ...userContact, image: image });
+        let file = event.target.files[0];
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+          setUserContact({ ...userContact, image: fileReader.result });
+        };
       }
     } else {
       textValue = event.target.value;
