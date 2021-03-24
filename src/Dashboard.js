@@ -2,6 +2,9 @@ import React from "react";
 import LeftMenu from "./LeftMenu.js";
 import RightMenu from "./RightMenu.js";
 function Dashboard(props) {
+  const handleListClick = () => {
+    alert("sas");
+  };
   return (
     <div
       style={{
@@ -10,7 +13,7 @@ function Dashboard(props) {
         minHeight: "100vh",
       }}
     >
-      <LeftMenu {...props} />
+      <LeftMenu {...props} handleListClick={handleListClick} />
       <RightMenu {...props} />
 
       {/* <h1>Welcome {userData["currentUser"]["First Name"]["value"]} </h1> */}

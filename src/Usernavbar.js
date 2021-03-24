@@ -11,6 +11,7 @@ function Usernavbar(props) {
           backgroundColor: "#ededed",
           display: "flex",
           padding: "10px 16px",
+          borderRight: "solid .3px #999",
         }}
       >
         <div
@@ -33,7 +34,8 @@ function Usernavbar(props) {
               fontWeight: "bold",
             }}
           >
-            {props.userData["currentUser"]["First Name"]["value"]}
+            {props.userData["currentUser"] &&
+              props.userData["currentUser"]["First Name"]["value"]}
           </span>
         </div>
         <div

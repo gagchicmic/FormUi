@@ -14,6 +14,8 @@ function AvatarList({ userContact, setUserContact, dialog, handleSubmit }) {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
         fileReader.onload = () => {
+          console.log(fileReader.result);
+
           setUserContact({ ...userContact, image: fileReader.result });
         };
       }

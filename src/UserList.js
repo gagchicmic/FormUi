@@ -10,7 +10,6 @@ function UserList(props) {
     setPopUp(true);
     setImageIndex(index);
   };
-
   let imageList = [];
 
   const fillData = (index) => {
@@ -25,7 +24,7 @@ function UserList(props) {
                 display: "flex",
                 alignItems: "center",
                 padding: "0 15px 0 13px",
-                margin: "20px 0",
+                borderBottom: "1px solid #919191",
               }}
             >
               <img
@@ -46,7 +45,8 @@ function UserList(props) {
                 flexDirection: "column",
                 fontSize: "0.8rem",
                 textAlign: "left",
-                padding: "20px 15px",
+                padding: "25px 15px",
+                borderBottom: "1px solid #919191",
               }}
             >
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -102,10 +102,7 @@ function UserList(props) {
             </span>
             <img
               style={{ height: "400px", width: "400px" }}
-              src={
-                "data:image/png;base64," +
-                props.localData[idx]["friendsList"][imageIndex]["image"]
-              }
+              src={props.localData[idx]["friendsList"][imageIndex]["image"]}
               alt=""
               srcset=""
             />

@@ -9,6 +9,7 @@ function LeftMenu(props) {
         background: "#fff",
         display: "grid",
         gridTemplateRows: "1fr 14fr",
+        maxHeight: "100vh",
       }}
     >
       <Usernavbar {...props} />
