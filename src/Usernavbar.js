@@ -45,8 +45,15 @@ function Usernavbar(props) {
             alignItems: "center",
           }}
         >
-          <Link style={{}} to="/">
-            <Close />
+          <Link
+            style={{
+              color: "rgb(0 0 0 / 45%)",
+              fontWeight: "solid",
+              textDecoration: "none",
+            }}
+            to="/login"
+          >
+            Sign out
           </Link>
 
           <Avatars {...props} />

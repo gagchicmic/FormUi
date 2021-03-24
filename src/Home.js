@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Dashboard from "./Dashboard.js";
 import Navbar from "./Navbar.js";
@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 const Home = () => {
   const location = useLocation();
   const history = useHistory();
+  const [localData, setLocalData] = useState(null);
   const userData = location.state?.params || false;
   if (!userData) {
     history.replace("/");
@@ -17,10 +18,14 @@ const Home = () => {
     image: "",
   });
   const [friendList, setFriendList] = useState([]);
+
+  useEffect(() => {
+    let localData = JSON.parse(localStorage.getItem("userArr"));
+    setLocalData(localData);
+  }, []);
+
   const handleSubmit = () => {
     let index;
-    let localData = JSON.parse(localStorage.getItem("userArr"));
-    console.log(localData);
     for (let i = 0; i < localData.length; i++) {
       if (
         localData[i]["Email"]["value"] ===
@@ -52,6 +57,7 @@ const Home = () => {
         setUserContact={setUserContact}
         handleSubmit={handleSubmit}
         userData={userData}
+        localData={localData}
       />
     </>
   );
