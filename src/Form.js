@@ -2,46 +2,32 @@
 
 const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   const checkValidation = (type, text, field) => {
+    if (text.length === 0) {
+      field[type]["error"] = "please enter the data";
+      return;
+    }
     if (type === "First Name") {
-      if (text.length === 0) {
-        field[type]["error"] = "";
-      } else if (
-        (!/^[A-Za-z]+$/.test(text) && text.length > 0) ||
-        text.length <= 2
-      ) {
+      if ((!/^[A-Za-z]+$/.test(text) && text.length > 0) || text.length <= 2) {
         field[type]["error"] =
           "length should be greater than 2 and use only alphabets";
       } else {
         field[type]["error"] = "";
       }
     } else if (type === "Last Name") {
-      if (text.length === 0) {
-        field[type]["error"] = "";
-      } else if (
-        (!/^[A-Za-z]+$/.test(text) && text.length > 0) ||
-        text.length <= 2
-      ) {
+      if ((!/^[A-Za-z]+$/.test(text) && text.length > 0) || text.length <= 2) {
         field[type]["error"] =
           "length should be greater than 2 and use only alphabets";
       } else {
         field[type]["error"] = "";
       }
     } else if (type === "Email") {
-      if (text.length === 0) {
-        field[type]["error"] = "";
+      if (!/^\w+([.-]?\w+)+@\w+([.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text)) {
+        field[type]["error"] = "Please enter a valid email account ";
       } else {
-        if (
-          !/^\w+([.-]?\w+)+@\w+([.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/.test(text)
-        ) {
-          field[type]["error"] = "Please enter a valid email account ";
-        } else {
-          field[type]["error"] = "";
-        }
+        field[type]["error"] = "";
       }
     } else if (type === "Password") {
-      if (text.length === 0) {
-        field[type]["error"] = "";
-      } else if (
+      if (
         !/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(text)
       ) {
         field[type]["error"] =
@@ -52,9 +38,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
     }
     // CONTACT VALIDATION
     else if (type === "Contact") {
-      if (text.length === 0) {
-        field[type]["error"] = "";
-      } else if (!/^[6-9]\d{9}$/.test(text)) {
+      if (!/^[6-9]\d{9}$/.test(text)) {
         field[type]["error"] = "enter valid mobile no";
       } else {
         field[type]["error"] = "";
