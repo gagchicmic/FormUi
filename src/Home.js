@@ -16,10 +16,10 @@ const Home = () => {
     name: "",
     image: "",
   });
-  const [friendList, setFriendList] = useState([]);
 
   useEffect(() => {
     let localData = JSON.parse(localStorage.getItem("userArr"));
+    console.log(localData);
     setLocalData(localData);
   }, []);
 
@@ -33,12 +33,8 @@ const Home = () => {
         index = i;
       }
     }
+    localData[index]["friends"].push(userContact);
 
-    if ("friendsList" in localData[index]) {
-      localData[index]["friendsList"].push(userContact);
-    } else {
-      localData[index]["friendsList"] = [userContact];
-    }
     localStorage.setItem("userArr", JSON.stringify(localData));
     setUserContact({
       name: "",
@@ -50,9 +46,7 @@ const Home = () => {
       {/* <Navbar isLoggedIn={true} /> */}
       {/* <h1>{userData["currentUser"]["First Name"]["value"]}</h1> */}
       <Dashboard
-        friendList={friendList}
         userContact={userContact}
-        setFriendList={setFriendList}
         setUserContact={setUserContact}
         handleSubmit={handleSubmit}
         userData={userData}

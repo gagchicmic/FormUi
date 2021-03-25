@@ -14,8 +14,8 @@ function UserList(props) {
 
   const fillData = (index) => {
     idx = index;
-    if (props.localData && "friendsList" in props.localData[index]) {
-      imageList = props.localData[index]["friendsList"].map((friend, idx) => {
+    if (props.localData && "friends" in props.localData[index]) {
+      imageList = props.localData[index]["friends"].map((friend, idx) => {
         return (
           <>
             <div
@@ -109,9 +109,7 @@ function UserList(props) {
               }}
             >
               <div style={{ height: "200px", textAlign: "center" }}>
-                <h4>
-                  {props.localData[idx]["friendsList"][imageIndex]["name"]}
-                </h4>
+                <h4>{props.localData[idx]["friends"][imageIndex]["name"]}</h4>
                 <img
                   style={{
                     height: "100%",
@@ -119,7 +117,7 @@ function UserList(props) {
                     borderRadius: "20px",
                     marginTop: "10px",
                   }}
-                  src={props.localData[idx]["friendsList"][imageIndex]["image"]}
+                  src={props.localData[idx]["friends"][imageIndex]["image"]}
                   alt=""
                   srcset=""
                 />

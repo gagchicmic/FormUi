@@ -29,7 +29,12 @@ function RightMenu(props) {
       )}
     </div>
   ) : (
-    <div style={{ backgroundImage: `url(${WhatsApp})` }}></div>
+    <div
+      style={{
+        backgroundImage: `url(${WhatsApp})`,
+        borderLeft: "solid 3px rgb(237 237 237)",
+      }}
+    ></div>
   );
 }
 

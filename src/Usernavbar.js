@@ -11,7 +11,6 @@ function Usernavbar(props) {
           backgroundColor: "#ededed",
           display: "flex",
           padding: "10px 16px",
-          borderRight: "solid .3px #999",
         }}
       >
         <div

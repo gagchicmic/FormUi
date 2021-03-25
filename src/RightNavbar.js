@@ -8,6 +8,7 @@ function RightNavbar(props) {
         display: "flex",
         alignItems: "center",
         padding: "10px",
+        borderLeft: "1px solid rgb(145 145 145)",
       }}
     >
       {props.image ? (

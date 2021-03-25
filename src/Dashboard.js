@@ -4,6 +4,8 @@ import RightMenu from "./RightMenu.js";
 function Dashboard(props) {
   const [name, setName] = useState("");
   const [Image, setImage] = useState("");
+  const [apiData, setApiData] = useState(false);
+
   const handleListClick = (name, image) => {
     setName(name);
     setImage(image);
