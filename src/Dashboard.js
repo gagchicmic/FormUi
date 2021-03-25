@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import LeftMenu from "./LeftMenu.js";
 import RightMenu from "./RightMenu.js";
 function Dashboard(props) {
-  const handleListClick = () => {
-    alert("sas");
+  const [name, setName] = useState("");
+  const [Image, setImage] = useState("");
+  const handleListClick = (name, image) => {
+    setName(name);
+    setImage(image);
   };
   return (
     <div
@@ -14,7 +17,7 @@ function Dashboard(props) {
       }}
     >
       <LeftMenu {...props} handleListClick={handleListClick} />
-      <RightMenu {...props} />
+      <RightMenu {...props} name={name} image={Image} />
 
       {/* <h1>Welcome {userData["currentUser"]["First Name"]["value"]} </h1> */}
     </div>

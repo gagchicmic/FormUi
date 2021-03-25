@@ -40,12 +40,15 @@ function UserList(props) {
               />
             </div>
             <div
+              onClick={() =>
+                props.handleListClick(friend["name"], friend["image"])
+              }
               style={{
                 display: "flex",
                 flexDirection: "column",
                 fontSize: "0.8rem",
                 textAlign: "left",
-                padding: "25px 15px",
+                padding: "25px 10px",
                 borderBottom: "1px solid #919191",
               }}
             >
@@ -54,9 +57,10 @@ function UserList(props) {
                   style={{
                     margin: 0,
                     letterSpacing: "1px",
-                    fontSize: "1.4rem",
+                    fontSize: "1rem",
                     textOverflow: "ellipsis",
                     flexGrow: "1",
+                    fontWeight: "normal",
                   }}
                 >
                   {friend["name"]}

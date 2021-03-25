@@ -4,20 +4,37 @@ function RightNavbar(props) {
   return (
     <div
       style={{
-        background: "rgb(237 237 237)",
-        display: "grid",
-        gridTemplateColumns: "1fr 12fr 1fr",
+        background: `${props.color}`,
+        display: "flex",
         alignItems: "center",
-        paddingLeft: "6%",
-        padding: "1.1%",
+        padding: "10px",
       }}
     >
-      <img
-        alt=""
-        style={{ maxWidth: "40px", borderRadius: "50%" }}
-        src={AvatarImg}
-      />
-      <span>name</span>
+      {props.image ? (
+        <img
+          alt=""
+          style={{
+            height: "42px",
+            width: "42px",
+
+            borderRadius: "50%",
+          }}
+          src={props.image}
+        />
+      ) : (
+        <img
+          alt=""
+          style={{
+            height: "42px",
+            width: "42px",
+            visibility: "hidden",
+          }}
+        />
+      )}
+
+      <span style={{ display: "inline-block", marginLeft: "10px" }}>
+        {props.name}
+      </span>
     </div>
   );
 }

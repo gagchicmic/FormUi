@@ -10,10 +10,16 @@ function LeftMenu(props) {
         display: "grid",
         gridTemplateRows: "1fr 14fr",
         maxHeight: "100vh",
+        boxShadow: "10px 0 5px -2px #888",
       }}
     >
       <Usernavbar {...props} />
-      <div style={{ backgroundColor: "#fff", overflowY: "auto" }}>
+      <div
+        style={{
+          backgroundColor: "#fff",
+          overflowY: "auto",
+        }}
+      >
         <UserList {...props} />
       </div>
     </div>
