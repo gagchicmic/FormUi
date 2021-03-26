@@ -60,11 +60,11 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
       const today = new Date();
       const year1 = text.split("-")[0];
       const year2 = today.toLocaleDateString().split("/")[2];
-      if (year2 - year1 < 18) {
+      if (year2 - year1 < 18 || year2 - year1 > 50) {
         result = false;
       }
       if (result === false) {
-        alert("user must be 18 years old ");
+        alert("user must be between 50 and 18 years old ");
         return;
       }
     }
