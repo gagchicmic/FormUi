@@ -46,3 +46,9 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #ff0000;
 }
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+  outline: none;
+}

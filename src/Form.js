@@ -2,7 +2,7 @@
 
 const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   const checkValidation = (type, text, field) => {
-    if (text.length === 0) {
+    if (text.length === 0 && type !== "DOB") {
       field[type]["error"] = "please enter the data";
       return;
     }

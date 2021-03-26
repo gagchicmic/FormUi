@@ -29,8 +29,8 @@ function RightBottom(props) {
             width: "100%",
             padding: "6px",
             borderRadius: "20px",
-            boxShadow: "inset 0 0 1px 2px rgb(237 237 237)",
             background: "#fff",
+            border: "none",
           }}
         />
       </div>

@@ -15,16 +15,17 @@ const SignUpForm = (
         }
       }
     }
-
     let isValid = true;
     let message;
     const keyArr = Object.keys(formData);
     for (let i = 0; i < keyArr.length; i++) {
-      if (formData[keyArr[i]]["error"].length > 0) {
+      console.log(formData[keyArr[i]]);
+      if (
+        formData[keyArr[i]]["error"].length > 0 ||
+        !formData[keyArr[i]]["value"].length
+      ) {
         isValid = false;
-        message = `${(keyArr[i] + " " + "error").toUpperCase()}   : ${
-          formData[keyArr[i]]["error"]
-        }`;
+        message = `${(keyArr[i] + " " + "error").toUpperCase()}`;
         break;
       }
     }

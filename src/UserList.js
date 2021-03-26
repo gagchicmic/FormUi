@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./modal.css";
 import { v4 as uuidv4 } from "uuid";
 import Modal from "./Modal";
+import { AiFillCloseCircle as Close } from "react-icons/ai";
 function UserList(props) {
   const [isPopUp, setPopUp] = useState(false);
   const [imageIndex, setImageIndex] = useState(null);
@@ -97,8 +98,17 @@ function UserList(props) {
       {isPopUp && (
         <Modal>
           <div className="modal">
-            <span className="cancel" onClick={() => setPopUp(false)}>
-              Close
+            <span
+              style={{
+                position: "absolute",
+                top: "10px",
+                color: "white",
+                right: "20px",
+                fontSize: "30px",
+              }}
+              onClick={() => setPopUp(false)}
+            >
+              <Close />
             </span>
             <div
               style={{
