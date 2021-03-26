@@ -1,0 +1,46 @@
+.mainDiv {
+  background: linear-gradient(to top, #fd746c, #2c3e50);
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: saturate(80%) blur(30px);
+  border-radius: 20px;
+  width: 70%;
+  height: 75%;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+
+.loginContainer-Main {
+  display: flex;
+  flex-wrap: wrap;
+  height: 40vh;
+}
+.signUpContainer-Main {
+  display: flex;
+  flex-wrap: wrap;
+  height: 60vh;
+}
+.loginContainer-Main h1,
+.signUpContainer-Main h1 {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0;
+  color: #e56b6f;
+  font-weight: bolder;
+}
+.loginContainer,
+.signUpContainer {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  align-items: center;
+}

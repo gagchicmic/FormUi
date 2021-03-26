@@ -1,0 +1,52 @@
+.formWrap {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-basis: 100%;
+  font-weight: bold;
+}
+
+.formWrap .formRow {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.formWrap .formRow .labelInput {
+  flex-basis: 60%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.formWrap .formRow .labelInput label {
+  text-transform: capitalize;
+  width: 8vw;
+  color: #e56b6f;
+}
+
+.formWrap .formRow .labelInput input {
+  min-height: 27px;
+  border: 2px solid #dadada;
+  border-radius: 6px;
+  padding-left: 7px;
+}
+
+.formWrap .formRow .error {
+  padding-left: 1%;
+  flex-basis: 40%;
+  font-size: 12px;
+  color: rgb(252, 213, 206);
+}
+
+.formWrap .formRow button {
+  background-color: #e56b6f;
+  padding: 12%;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  font-weight: bolder;
+  margin-right: 20px;
+  text-transform: capitalize;
+}

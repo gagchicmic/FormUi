@@ -8,6 +8,7 @@ const SignUpForm = (
     let userData = localStorage.getItem("userArr");
     userData = JSON.parse(userData);
     if (userData && userData.length) {
+      // prevent registering from duplicate email
       for (let i = 0; i < userData.length; i++) {
         if (userData[i][formData["Email"]["value"]]) {
           alert("already exist");
@@ -16,16 +17,18 @@ const SignUpForm = (
       }
     }
     let isValid = true;
+    // error message on submit
     let message;
     const keyArr = Object.keys(formData);
     for (let i = 0; i < keyArr.length; i++) {
       console.log(formData[keyArr[i]]);
+      // if there is error or the input is empty prevent
       if (
         formData[keyArr[i]]["error"].length > 0 ||
         !formData[keyArr[i]]["value"].length
       ) {
         isValid = false;
-        message = `${(keyArr[i] + " " + "error").toUpperCase()}`;
+        message = (keyArr[i] + " error").toUpperCase();
         break;
       }
     }
@@ -35,6 +38,7 @@ const SignUpForm = (
     } else {
       alert("SuccesFully Account Created");
     }
+    // send email and data to app.js
     const {
       Password: { value: password },
       Email: { value: email },

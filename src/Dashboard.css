@@ -1,0 +1,52 @@
+.mainDashboard {
+  display: grid;
+  grid-template-columns: 2.12fr 5fr;
+  min-height: 100vh;
+}
+
+.mainDashboard .leftMenu {
+  background: #fff;
+  display: grid;
+  grid-template-rows: 1fr 14fr;
+  max-height: 100vh;
+  box-shadow: 10px 0 5px -2px #888;
+}
+
+.mainDashboard .leftMenu .listContainer {
+  background-color: #fff;
+  overflow-y: auto;
+}
+.leftNav {
+  background-color: #ededed;
+  display: flex;
+  padding: 10px 16px;
+}
+.leftMenu .imgDiv {
+  flex-basis: 20%;
+  background-color: #ededed;
+  display: flex;
+  align-items: center;
+}
+
+.leftMenu .imgDiv img {
+  max-width: 40px;
+  border-radius: 50%;
+}
+.leftMenu .imgDiv span {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.iconsDiv {
+  flex-basis: 80%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.iconsDiv .Link {
+  color: rgb(0 0 0 / 45%);
+  font-weight: solid;
+  text-decoration: none;
+}

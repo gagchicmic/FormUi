@@ -26,6 +26,10 @@ function AvatarList({ userContact, setUserContact, dialog, handleSubmit }) {
   };
   const handleForm = (event) => {
     event.preventDefault();
+    if (!userContact.image || !userContact.name) {
+      alert("Please enter data ");
+      return;
+    }
     setModal(false);
     handleSubmit();
   };

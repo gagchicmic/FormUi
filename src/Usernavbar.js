@@ -6,53 +6,16 @@ import { Link } from "react-router-dom";
 function Usernavbar(props) {
   return (
     <>
-      <div
-        style={{
-          backgroundColor: "#ededed",
-          display: "flex",
-          padding: "10px 16px",
-        }}
-      >
-        <div
-          style={{
-            flexBasis: "20%",
-            backgroundColor: "#ededed",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <img
-            alt=""
-            style={{ maxWidth: "40px", borderRadius: "50%" }}
-            src={Avatar}
-          />
-          <span
-            style={{
-              display: "inline-block",
-              marginLeft: "10px",
-              fontWeight: "bold",
-            }}
-          >
+      <div className="leftNav">
+        <div className="imgDiv">
+          <img alt="" src={Avatar} />
+          <span>
             {props.userData["currentUser"] &&
               props.userData["currentUser"]["First Name"]["value"]}
           </span>
         </div>
-        <div
-          style={{
-            flexBasis: "80%",
-            display: "flex",
-            flexDirection: "row-reverse",
-            alignItems: "center",
-          }}
-        >
-          <Link
-            style={{
-              color: "rgb(0 0 0 / 45%)",
-              fontWeight: "solid",
-              textDecoration: "none",
-            }}
-            to="/login"
-          >
+        <div className="iconsDiv">
+          <Link className="Link" to="/login">
             Sign out
           </Link>
 

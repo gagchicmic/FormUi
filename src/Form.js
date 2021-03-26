@@ -1,5 +1,5 @@
 // generic form component dewpends upon field data
-
+import "./form.css";
 const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   const checkValidation = (type, text, field) => {
     if (text.length === 0 && type !== "DOB") {
@@ -80,41 +80,12 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   const fieldArr = Object.keys(formData).map((field, idx) => {
     return (
       <>
-        <div
-          style={{
-            flexBasis: "100%",
-            display: "flex",
-            justifyContent: "flex-end",
-            marginBottom: "20px",
-          }}
-          key={idx}
-        >
+        <div className="formRow" key={idx}>
           {/* getting name and value from fieldData depend upon form type */}
-          <div
-            style={{
-              flexBasis: "60%",
-              display: "flex",
-              justifyContent: "flex-end",
-            }}
-          >
-            <label
-              style={{
-                textTransform: "capitalize",
-                width: "8vw",
-                color: "#e56b6f",
-              }}
-              htmlFor={field}
-            >
-              {[field]}
-            </label>
+          <div className="labelInput">
+            <label htmlFor={field}>{[field]}</label>
             <input
               autoComplete="off"
-              style={{
-                minHeight: "27px",
-                border: "2px solid #dadada",
-                borderRadius: "6px",
-                paddingLeft: "7px",
-              }}
               type={formData[field]["type"]}
               id={field}
               name={field}
@@ -129,14 +100,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
           </div>
 
           {formData[field]["error"] ? (
-            <div
-              style={{
-                paddingLeft: "1%",
-                flexBasis: "40%",
-                fontSize: "12px",
-                color: "rgb(252, 213, 206)",
-              }}
-            >
+            <div className="error">
               <span>{formData[field]["error"]}</span>
             </div>
           ) : (
@@ -149,20 +113,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
         </div>
         {idx === Object.keys(formData).length - 1 && (
           <div style={{}}>
-            <button
-              style={{
-                backgroundColor: "#e56b6f",
-                padding: "12%",
-                borderRadius: "8px",
-                color: "white",
-                border: "none",
-                fontWeight: "bolder",
-                marginRight: "20px",
-                textTransform: "capitalize",
-              }}
-            >
-              submit
-            </button>
+            <button>submit</button>
           </div>
         )}
       </>
@@ -172,14 +123,7 @@ const Form = ({ handleSubmit, isSignUp, setFormData, formData }) => {
   // form view
   return (
     <form
-      style={{
-        marginTop: "20px",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        flexBasis: "100%",
-        fontWeight: "bold",
-      }}
+      className="formWrap"
       onSubmit={(e) => {
         // prevent refresh
         e.preventDefault();

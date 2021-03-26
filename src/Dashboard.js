@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import LeftMenu from "./LeftMenu.js";
 import RightMenu from "./RightMenu.js";
+import "./Dashboard.css";
 function Dashboard(props) {
   const [name, setName] = useState("");
   const [Image, setImage] = useState("");
-  const [apiData, setApiData] = useState(false);
 
   const handleListClick = (name, image) => {
     setName(name);
     setImage(image);
   };
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "2.12fr 5fr",
-        minHeight: "100vh",
-      }}
-    >
+    <div className="mainDashboard">
       <LeftMenu {...props} handleListClick={handleListClick} />
       <RightMenu {...props} name={name} image={Image} />
 
