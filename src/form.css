@@ -40,7 +40,7 @@
   color: rgb(252, 213, 206);
 }
 
-.formWrap .formRow button {
+.formWrap button {
   background-color: #e56b6f;
   padding: 12%;
   border-radius: 8px;
