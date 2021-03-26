@@ -48,6 +48,7 @@ html {
 }
 input[type="text"],
 input[type="password"],
+input[type="email"],
 textarea,
 select {
   outline: none;
